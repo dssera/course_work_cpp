@@ -1,0 +1,5 @@
+Monday;20:20;Birthday;Ivan Ivanov Ivanenko;+375333459012;
+Friday;20:20;Birthday1;Ivan Ivanov Ivanenko;+375292344578;
+Wednesday;20:20;Birthday2;Ivan Ivanov Ivanenko;+375292344578;
+Saturday;20:20;Birthday3;Ivan Ivanov Ivanenko;+375292344578;
+Wednesday;20:20;Birthday4;Ivan Ivanov Ivanenko;+375292344578;

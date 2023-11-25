@@ -46,7 +46,7 @@ Commit's plan:
 	3. This is bad plan
 */
 
-#include "AuthScreen.h"
+#include "Auth.h"
 #include "db.cpp"
 
 using namespace std;
@@ -82,9 +82,9 @@ int main()
 {
 	// auth_db has a straight access to files
 	// AuthScreen* auth = new AuthScreen(new DataBase("auth.txt"));
-	AuthScreen* auth = new AuthScreen(new DataBase("auth.txt"));
+	Auth* auth = new Auth(new DataBase("auth.txt"));
 	// there is logic in run that works with auth_db field;
-	User* user = auth->run();
+	User* user = auth->run_auth_menu();
 	// the end of auth;
 
 	//// collection gotta take the data from files(dataBase) that are related with user

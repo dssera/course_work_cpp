@@ -127,13 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AuthScreen.cpp" />
+    <ClCompile Include="Auth.cpp" />
     <ClCompile Include="db.cpp" />
+    <ClCompile Include="Interfaces.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AuthScreen.h" />
+    <ClInclude Include="Auth.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="db.h" />
     <ClInclude Include="User.h" />

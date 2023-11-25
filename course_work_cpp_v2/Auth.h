@@ -11,19 +11,19 @@ using namespace std;
 class Auth
 {
 private:
-	DataBase* db;
+	UserDataBase* db;
 	string usernmae;
 	string password;
 	
 
 public:
-	Auth(DataBase* db)
+	Auth(UserDataBase* db)
 	{
 		this->db = db;
 	}
 	User* run_auth_menu();
 protected:
-	void identificate(string username);
+	string identificate(string username);
 
 	User* auth(string username, string password);
 	

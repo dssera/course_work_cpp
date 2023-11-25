@@ -80,9 +80,24 @@ using namespace std;
 
 int main()
 {
+	/*string data;
+	UserDataBase* user_db = new UserDataBase("user_test_file.txt");
+	data = user_db->read_file();
+	cout << data << endl;*/
+	
+
+	
+
+	/*for (size_t i = 0; i < 5; i++)
+	{
+		cout << "field: " << tokenized_data[i] << endl;
+	}*/
+
+
+
+
 	// auth_db has a straight access to files
-	// AuthScreen* auth = new AuthScreen(new DataBase("auth.txt"));
-	Auth* auth = new Auth(new DataBase("auth.txt"));
+	Auth* auth = new Auth(new UserDataBase("auth.txt"));
 	// there is logic in run that works with auth_db field;
 	User* user = auth->run_auth_menu();
 	// the end of auth;
@@ -90,8 +105,8 @@ int main()
 	//// collection gotta take the data from files(dataBase) that are related with user
 	//// soo, we can make the name of the db as "db_"+"username"
 
-	//Collection* collection = new Collection(new DataBase("task.txt"), user);
-	//
+	// Collection* collection = new Collection(new DataBase("task.txt"), user);
+	
 
 	//MainScreen mainScreen = new MainScreen(collection, user);
 	//// collection has access to dataBase which has access to files

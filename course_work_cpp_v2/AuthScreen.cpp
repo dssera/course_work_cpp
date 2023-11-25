@@ -1,6 +1,5 @@
 ﻿#include "AuthScreen.h"
 
-using namespace std;
 
 User* AuthScreen::run()
 {
@@ -12,6 +11,8 @@ User* AuthScreen::run()
 
 	return user;
 }
+
+// delete sign_up and sign_in - they're a part of interface auth_menu()
 User* AuthScreen::sign_in()
 {
 	cout << "Sign In: " << endl;
@@ -66,7 +67,7 @@ User* AuthScreen::auth(string username, string password)
 	{
 		// this->is_authenticated = false;
 		throw exception("auth error : \
-bool auth(string username, string password)");
+			bool auth(string username, string password)");
 	}
 
 	User* user_from_db = new User("name1", "password");

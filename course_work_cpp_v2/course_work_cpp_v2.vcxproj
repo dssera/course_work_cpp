@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClInclude Include="AuthScreen.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="db.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -39,8 +39,14 @@ start -> auth -|
 5. other [undone]
 */
 
+/*
+Commit's plan:
+	1. finish 3rd lab
+	2. separate interfaces
+	3. This is bad plan
+*/
+
 #include "AuthScreen.h"
-#include "User.h"
 #include "db.cpp"
 
 using namespace std;
@@ -74,13 +80,48 @@ using namespace std;
 
 int main()
 {
+	// auth_db has a straight access to files
+	// AuthScreen* auth = new AuthScreen(new DataBase("auth.txt"));
+	AuthScreen* auth = new AuthScreen(new DataBase("auth.txt"));
+	// there is logic in run that works with auth_db field;
+	User* user = auth->run();
+	// the end of auth;
 
-	cout << "dsfdsf";
-	DataBase* db = new DataBase("file.txt");
-	db->menu();
+	//// collection gotta take the data from files(dataBase) that are related with user
+	//// soo, we can make the name of the db as "db_"+"username"
+
+	//Collection* collection = new Collection(new DataBase("task.txt"), user);
+	//
+
+	//MainScreen mainScreen = new MainScreen(collection, user);
+	//// collection has access to dataBase which has access to files
+	//mainScreen->run();
+
+	/*
+	Collection
+	Task
+	DataBase
+	User
+	Admin
+	Auth
+	*/
+
+
 	
 
 
+
+	/*string str1 = "qwer";
+	string str2 = "qwertyui";
+
+	string* arr = new string[2];
+	arr[0] = str1;
+	arr[1] = str2;
+
+	cout << arr[0] << endl << arr[1] << endl;*/
+
+	
+	
 
 
 

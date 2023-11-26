@@ -5,15 +5,17 @@
 
 string Auth::identificate(string username)
 {
-	string* usernames = this->db->get_usernames();
+	list<string> usernames = this->db->get_usernames();
+
 	
-	for (int i = 0; i < usernames->length(); i++)
+	for (string username_ : usernames)
 	{
-		if (username == usernames[i])
+		if (username == username_)
 		{
-		 return username;
+			return username;
 		}
 	}
+	
 	return NO_MATCH;
 	// + ADD THE EXCEPTION FOR USERNAME "NO MATCH"
 
@@ -21,7 +23,7 @@ string Auth::identificate(string username)
 
 User* Auth::auth(string username, string password)
 {
-	User* user_from_db = nullptr;
+	User* user = nullptr;
 
 	if (identificate(username) == NO_MATCH)
 	{
@@ -30,21 +32,21 @@ User* Auth::auth(string username, string password)
 	}
 
 
-	string* passwords = this->db->get_passwords();
-	/*for (int i = 0; i < passwords.length(); i++)
+	list<string> passwords = this->db->get_passwords();
+	for (string password_ : passwords)
 	{
-		if (password == passwords[i])
+		if (password == password_)
 		{
-			user_from_db = new User("name1", "password");
+			user = new User(username, password);
 
 		}
-	}*/
-	if (user_from_db == nullptr)
+	}
+	if (user == nullptr)
 	{
 		cout << "There is no user with login and password like these" << endl;
 		return nullptr;
 	}
 
-	return user_from_db;
+	return user;
 	// this->is_authenticated = true;
 }

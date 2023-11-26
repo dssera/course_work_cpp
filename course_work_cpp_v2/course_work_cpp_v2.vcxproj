@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Auth.cpp" />
+    <ClCompile Include="Container.cpp" />
     <ClCompile Include="db.cpp" />
     <ClCompile Include="Interfaces.cpp" />
     <ClCompile Include="main.cpp" />
@@ -136,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="Auth.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="Container.h" />
     <ClInclude Include="db.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>

@@ -1,8 +1,10 @@
-#pragma once
+﻿#pragma once
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <list>
+#include "Constants.h"
 
 using namespace std;
 
@@ -13,24 +15,23 @@ public:
 	string filename;
 	string data;
 
-	static int get_string_arr_length(const std::string* array) 
-	{
-		return 0;
-	}
+
 	BaseDataBase(string filename)
 	{
 		this->filename = filename;
 	}
+
 	string get_filename()
 	{
 		return this->filename;
 	}
+
 	string read_file()
 	{
 		ifstream file(this->filename);
 		if (!file.is_open()) {
 			cout << "Error opening file: " << this->filename << endl;
-			return "";
+			return NO_DATA_STR;
 		}
 
 		string file_contents;
@@ -43,50 +44,98 @@ public:
 
 		return file_contents;
 	}
-	string* tokenize_string(string line, char token)
+
+	list<string> tokenize_string(string line, char token)
 	{
-		return nullptr;
-		//std::stringstream ss(line);
-		//std::string item;
-		//int tokenCount = 0;
+		// read about stringstream
+		list<string> tokens;
+		
+		stringstream ss(line);
+		string item;
 
-		//// Count the number of tokens
-		//while (std::getline(ss, item, token)) {
-		//	tokenCount++;
-		//}
+		ss.clear();
+		ss.seekg(0, ios::beg);
 
-		//// Create an array of strings
-		//std::string* tokens = new std::string[tokenCount];
+		while (getline(ss, item, token)) 
+		{
+			tokens.push_back(item);
+		}
 
-		//// Reset the stringstream
-		//ss.clear();
-		//ss.seekg(0, std::ios::beg);
-
-		//// Populate the array with tokens
-		//int i = 0;
-		//while (std::getline(ss, item, token)) {
-		//	tokens[i++] = item;
-		//}
-
-		//return tokens;
+		return tokens;
 	}
 };
 
 class UserDataBase : public BaseDataBase
 {
+private:
+	const int username_index = 2;
+	const int password_index = 3;
 
 public:
-	UserDataBase(string filename) : BaseDataBase(filename)
+	UserDataBase(string filename) : BaseDataBase(filename) {}
+	list<string> get_usernames()
 	{
+		// Если в файлике написан бред то приложение крашится
+		ifstream file(this->filename);
+		if (!file.is_open()) {
+			cout << "Error opening file: " << this->filename << endl;
+			throw exception();
+		}
+		list<string> usernames;
+		// list<string> file_lines;
 
+		string line;
+		while (getline(file, line)) 
+		{
+			//file_lines.push_back(line);
+			list<string> tokens = tokenize_string(line, ';');
+			string username;
+			int i = 0;
+			for (auto iter = tokens.begin(); i < username_index; iter++)
+			{
+				if (i++ == username_index - 1)
+				{
+					username = *iter;
+					usernames.push_back(username);
+				}
+			}
+		}
+
+		file.close();
+
+		return usernames;
 	}
-	string* get_usernames()
+	list<string> get_passwords()
 	{
-		return nullptr;
-	}
-	string* get_passwords()
-	{
-		return nullptr;
+		// Если в файлике написан бред то приложение крашится
+		ifstream file(this->filename);
+		if (!file.is_open()) {
+			cout << "Error opening file: " << this->filename << endl;
+			throw exception();
+		}
+		list<string> passwords;
+		// list<string> file_lines;
+
+		string line;
+		while (getline(file, line))
+		{
+			//file_lines.push_back(line);
+			list<string> tokens = tokenize_string(line, ';');
+			string password;
+			int i = 0;
+			for (auto iter = tokens.begin(); i < password_index; iter++)
+			{
+				if (i++ == password_index - 1)
+				{
+					password = *iter;
+					passwords.push_back(password);
+				}
+			}
+		}
+
+		file.close();
+
+		return passwords;
 
 	}
 };

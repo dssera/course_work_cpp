@@ -17,13 +17,13 @@ protected:
 
 class User : public BaseUser
 {
-	string access_level;
+	int access_level;
 
-	void set_access_level(string access_level);
+	void set_access_level(int access_level);
 public:
-	User(string username, string password, string access_level = USER_ACCESS_LEVEL);
+	User(string username, string password, int access_level = 0);
 
-	string get_access_level();
+	int get_access_level();
 
 };
 

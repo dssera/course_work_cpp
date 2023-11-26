@@ -48,6 +48,7 @@ Commit's plan:
 
 #include "Auth.h"
 #include "db.cpp"
+#include "Container.h"
 
 using namespace std;
 
@@ -85,14 +86,25 @@ int main()
 	data = user_db->read_file();
 	cout << data << endl;*/
 	
-
+	/*UserDataBase* db = new UserDataBase("user_test_file.txt");
+	string line = "data1;data2;data3";
+	list<string> usernames = db->get_usernames();
+	list<string> passwords = db->get_passwords();
+	for (string password : passwords)
+	{
+		cout << password << endl;
+	}*/
 	
 
 	/*for (size_t i = 0; i < 5; i++)
 	{
 		cout << "field: " << tokenized_data[i] << endl;
 	}*/
+	/*list = ["sttr1", "str2"]
+	list obj -> ptr"sttr1" -> ptr"str2"*/
 
+
+	
 
 
 
@@ -100,12 +112,22 @@ int main()
 	Auth* auth = new Auth(new UserDataBase("auth.txt"));
 	// there is logic in run that works with auth_db field;
 	User* user = auth->run_auth_menu();
+	cout << "Your username: " << user->username << endl <<
+		"Your password: " << user->password << endl;
+
+	if (user->get_access_level())
+	{
+		cout << "You are admin!" << endl;
+	}
+	else {
+		cout << "You are not admin" << endl;
+	}
 	// the end of auth;
 
 	//// collection gotta take the data from files(dataBase) that are related with user
 	//// soo, we can make the name of the db as "db_"+"username"
 
-	// Collection* collection = new Collection(new DataBase("task.txt"), user);
+	// Container* collection = new Container(new TaskDataBase("task.txt"), user);
 	
 
 	//MainScreen mainScreen = new MainScreen(collection, user);

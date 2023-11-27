@@ -40,16 +40,28 @@ start -> auth -|
 */
 
 /*
-Commit's plan:
-	1. finish 3rd lab
-	2. separate interfaces
-	3. This is bad plan
+PLaaan::
+	1.Fix user's access problem (1 in the file but it's not an admin)
+
+
+	here you have finished auth and user_db
+	other things:
+	1) Container:
+		1) Tree
+		2) ???
+	2) TaskDataaBase
+	and finallyyy
+	MainScreen class which works with collection and user objects
+
+
 */
+
 
 #include "Auth.h"
 #include "db.cpp"
 #include "Container.h"
-
+#include "MainScreen.h"
+#include <Windows.h>
 using namespace std;
 
 //void task_for_lab()
@@ -81,67 +93,66 @@ using namespace std;
 
 int main()
 {
-	/*string data;
-	UserDataBase* user_db = new UserDataBase("user_test_file.txt");
-	data = user_db->read_file();
-	cout << data << endl;*/
-	
-	/*UserDataBase* db = new UserDataBase("user_test_file.txt");
-	string line = "data1;data2;data3";
-	list<string> usernames = db->get_usernames();
-	list<string> passwords = db->get_passwords();
-	for (string password : passwords)
-	{
-		cout << password << endl;
-	}*/
-	
 
-	/*for (size_t i = 0; i < 5; i++)
-	{
-		cout << "field: " << tokenized_data[i] << endl;
-	}*/
-	/*list = ["sttr1", "str2"]
-	list obj -> ptr"sttr1" -> ptr"str2"*/
-
-
-	
-
-
-
-	// auth_db has a straight access to files
-	Auth* auth = new Auth(new UserDataBase("auth.txt"));
-	// there is logic in run that works with auth_db field;
+	/*Auth* auth = new Auth(new UserDataBase("auth.txt"));
 	User* user = auth->run_auth_menu();
-	cout << "Your username: " << user->username << endl <<
-		"Your password: " << user->password << endl;
 
-	if (user->get_access_level())
+	Container* collection = new Container(new TaskDataBase("task.txt"), user);
+	MainScreen* mainScreen = new MainScreen(collection, user);
+	mainScreen->run();*/
+
+
+	setconsolecp(1251);
+	setconsoleoutputcp(1251);
+	tree* tree = new tree(task("12345"));
+	task task("1234");
+	tree->insert(task);
+	cout << tree->root->left->data.get_day() << endl;
+	cout << tree->root->right->data.get_day() << endl;
+
+
+
+
+	// solve problem with giving amdin statuc
+	// solve problem with registration 
+	//		read how are registation and auth related
+
+
+	//// auth_db has a straight access to files
+	//Auth* auth = new Auth(new UserDataBase("auth.txt"));
+	//
+	//// there is logic in run that works with auth_db field;
+	//User* user = auth->run_auth_menu();
+	//cout << "Your username: " << user->username << endl <<
+	//	"Your password: " << user->password<< endl;
+	
+	
+	/*cout << user->get_access_level() << endl;
+	if (user->get_access_level() == 1)
 	{
 		cout << "You are admin!" << endl;
 	}
 	else {
 		cout << "You are not admin" << endl;
-	}
-	// the end of auth;
+	}*/
+	
 
 	//// collection gotta take the data from files(dataBase) that are related with user
 	//// soo, we can make the name of the db as "db_"+"username"
 
-	// Container* collection = new Container(new TaskDataBase("task.txt"), user);
+	//Container* collection = new Container(new TaskDataBase("task.txt"), user);
 	
 
 	//MainScreen mainScreen = new MainScreen(collection, user);
 	//// collection has access to dataBase which has access to files
 	//mainScreen->run();
 
-	/*
-	Collection
-	Task
-	DataBase
-	User
-	Admin
-	Auth
-	*/
+
+	
+
+
+
+
 
 
 	

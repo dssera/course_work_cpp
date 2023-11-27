@@ -4,7 +4,9 @@
 #include <fstream>
 #include <sstream>
 #include <list>
+
 #include "Constants.h"
+#include "User.h"
 
 using namespace std;
 
@@ -68,11 +70,13 @@ public:
 class UserDataBase : public BaseDataBase
 {
 private:
-	const int username_index = 2;
-	const int password_index = 3;
+	const int username_index = 1;
+	const int password_index = 2;
+	const int access_level_index = 3;
 
 public:
 	UserDataBase(string filename) : BaseDataBase(filename) {}
+
 	list<string> get_usernames()
 	{
 		// Если в файлике написан бред то приложение крашится
@@ -105,6 +109,7 @@ public:
 
 		return usernames;
 	}
+
 	list<string> get_passwords()
 	{
 		// Если в файлике написан бред то приложение крашится
@@ -137,6 +142,56 @@ public:
 
 		return passwords;
 
+	}
+
+
+	bool add_user(string username, string password)
+	{
+		// u can make "bool add_line() func which add any data
+		// and placed in base class. 
+		// CRUD operations can be placed in BaseDataBase
+
+		// this function can be modified to add_admin
+		// + one optional parameter bool is_admin
+
+		ofstream file;
+		file.open(this->filename, ios::app);
+		if (!file.is_open()) {
+			cout << "Error opening file: " << this->filename << endl;
+			return false;
+		}
+		file << '\n' << username << ';' << password << ';' << "0";
+		file.close();
+
+		return true;
+	}
+
+	int get_access_level(string username)
+	{
+		return 0;
+		//ifstream file(this->filename);
+		//if (!file.is_open()) {
+		//	cout << "Error opening file: " << this->filename << endl;
+		//	throw exception();
+		//}
+		//int access_level;
+		//// list<string> file_lines;
+
+		//string line;
+		//while (getline(file, line))
+		//{
+		//	//file_lines.push_back(line);
+		//	list<string> tokens = tokenize_string(line, ';');
+		//	int i = 0;
+		//	for (auto iter = tokens.begin(); i < access_level_index; iter++)
+		//	{
+		//		// will be done tomorrow
+		//	}
+		//}
+
+		//file.close();
+
+		//return access_level;
 	}
 };
 

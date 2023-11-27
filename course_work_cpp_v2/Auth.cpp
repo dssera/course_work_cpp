@@ -31,13 +31,13 @@ User* Auth::auth(string username, string password)
 		return nullptr;
 	}
 
-
 	list<string> passwords = this->db->get_passwords();
 	for (string password_ : passwords)
 	{
 		if (password == password_)
 		{
-			user = new User(username, password);
+			int access_level = this->db->get_access_level(username);
+			user = new User(username, password, access_level);
 
 		}
 	}
@@ -50,3 +50,5 @@ User* Auth::auth(string username, string password)
 	return user;
 	// this->is_authenticated = true;
 }
+
+

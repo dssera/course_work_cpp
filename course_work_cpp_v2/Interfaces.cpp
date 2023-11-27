@@ -7,9 +7,7 @@ User* Auth::run_auth_menu()
 
 	do
 	{
-		bool authenticated;
 		int enter;
-
 		string username, password;
 
 		cout << "Auth Menu" << endl << "1.Sign In" << endl
@@ -40,8 +38,13 @@ User* Auth::run_auth_menu()
 			cout << "Enter paswword" << endl;
 			cin >> password;
 			//password validation
+			
+			if (db->add_user(username, password))
+			{
+				cout << "User was added!!" << endl;
+				user = new User(username, password);
+			}
 
-			user = new User("user1", "password");
 
 			//add user in db or raise an error
 			//and then retutn pointer on gotten user

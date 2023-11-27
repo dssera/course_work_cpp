@@ -12,9 +12,6 @@ class Auth
 {
 private:
 	UserDataBase* db;
-	string usernmae;
-	string password;
-	
 
 public:
 	Auth(UserDataBase* db)

@@ -5,9 +5,9 @@ class MainScreen
 {
 private:
 public:
-	MainScreen(Container* collection, User* user)
+	MainScreen(TreeCollection* collection)
 	{
-	
+		
 	}
 
 	void run()

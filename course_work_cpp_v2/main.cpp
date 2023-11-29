@@ -33,8 +33,8 @@ start -> auth -|
 
 /*
 1. Auth [done]
-2. File System [undone]
-3. Container [undone]
+2. File System [done]
+3. Container [done]
 4. Main Functionality [undone]
 5. other [undone]
 */
@@ -46,69 +46,62 @@ PLaaan::
 
 	here you have finished auth and user_db
 	other things:
-	1) Container:
-		1) Tree
-		2) ???
-	2) TaskDataaBase
-	and finallyyy
-	MainScreen class which works with collection and user objects
+	1) Tree: 30 minutes
+	2) TaskDataaBase 2h
+	3) MainScreen 2h
+	// Получается за 4.5 часа можешь закончить
 
 
 */
-
 
 #include "Auth.h"
 #include "db.cpp"
 #include "Container.h"
 #include "MainScreen.h"
-#include <Windows.h>
-using namespace std;
 
-//void task_for_lab()
-//{
-//	string a = "ak";
-//	string b = "dmsdsd";
-//
-//	string x = "b";
-//	int x_len = 14;
-//	string sub_a = a;
-//	int a_len = 9;
-//	cout << sub_a.length() << endl;
-//	for (size_t i = 0; i < x_len - a_len; i++)
-//	{
-//		sub_a.append(" ");
-//	}
-//	cout << sub_a.length() << endl;
-//
-//	int count = 0;
-//	for (size_t i = 0; i < x.length(); i++)
-//	{
-//		if (int(x[i]) > int(sub_a[i]) && int(x[i]) < int(b[i]))
-//		{
-//			count++;
-//		}
-//	}
-//	cout << "count: " << count << endl;
-//}
+
 
 int main()
 {
 
 	/*Auth* auth = new Auth(new UserDataBase("auth.txt"));
-	User* user = auth->run_auth_menu();
+	User* user = auth->run_auth_menu();*/
 
-	Container* collection = new Container(new TaskDataBase("task.txt"), user);
-	MainScreen* mainScreen = new MainScreen(collection, user);
+	TreeCollection* collection = new TreeCollection(new TaskDataBase("task.txt"));
+	
+	collection->insert(Task("123456"));
+	collection->insert(Task("12345678"));
+	collection->insert(Task("1234567891011"));
+	collection->insert(Task("1234567"));
+	collection->insert(Task("123"));
+	collection->insert(Task("1234"));
+	// cout << collection->root->data.get_day() << endl;
+	if (Task* temp = collection->find("1234567891011"))
+	{
+		cout << temp->get_day() << endl;
+	}
+	else
+	{
+		cout << "Not found" << endl;
+	}
+	collection->print();
+	collection->remove("12345678");
+	collection->print();
+	cout<<collection->root->data.get_day() << endl;
+	
+
+
+	/*MainScreen* mainScreen = new MainScreen(collection, user);
 	mainScreen->run();*/
 
 
-	setconsolecp(1251);
+	/*setconsolecp(1251);
 	setconsoleoutputcp(1251);
 	tree* tree = new tree(task("12345"));
 	task task("1234");
 	tree->insert(task);
 	cout << tree->root->left->data.get_day() << endl;
-	cout << tree->root->right->data.get_day() << endl;
+	cout << tree->root->right->data.get_day() << endl;*/
 
 
 

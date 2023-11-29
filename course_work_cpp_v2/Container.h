@@ -39,10 +39,9 @@ private:
 			print_tree(curr->right);
 		}
 	}
-public:
-	
 	Node* root;
 	int size;
+public:
 
 	TreeCollection(TaskDataBase* db)
 	{

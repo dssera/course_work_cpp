@@ -99,7 +99,18 @@ int main()
 		new TaskDataBase("task_db.txt", user->username));
 	// что есди в дерево добавть 2 таски с одинаовым полем day
 	// мое дерево допускает дубли?
+
 	collection->print();
+	/*TaskDataBase* db = new TaskDataBase("task_db.txt", user->username);
+	list<Task*> tasks = db->get_tasks();
+	
+	auto it = tasks.begin();
+	while (it != tasks.end())
+	{
+		cout << (*it)->get_day() << endl;
+		it = tasks.erase(it);
+	}*/
+	// collection->print();
 	// сейчас данные, которые связаны с нашим юзером считываются
 	// и могут быть получены через get_tasks()
 	// давйа сделаем чтобы наша коллекция заполнялась

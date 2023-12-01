@@ -1,0 +1,4 @@
+saturday;10:35;event3;Maks;+375143545
+monday;20:00;Birthday;Ivan;+3751233423
+friday;17:00;event2;Egor;+3751234333423
+saturday;10:35;event3;Maks;+375143545

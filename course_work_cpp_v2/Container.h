@@ -231,10 +231,12 @@ public:
 	void fill_tree()
 	{
 		list<Task*> tasks = this->db->get_tasks();
-		for (int i = 0; i < tasks.size(); i++)
+		
+		auto it = tasks.begin();
+		while (it != tasks.end())
 		{
-			insert(tasks.front());
-			tasks.pop_front();
+			insert(*it);
+			it = tasks.erase(it);
 		}
 	}
 };

@@ -10,11 +10,11 @@ private:
 	class Node
 	{
 	public:
-		Task data;
+		Task* data;
 		Node* left;
 		Node* right;
 	
-		Node(Task val)
+		Node(Task* val)
 		{
 			left = nullptr;
 			right = nullptr;
@@ -35,18 +35,22 @@ private:
 		if (curr)
 		{
 			print_tree(curr->left);
-			cout << curr->data.get_day() << " ";
+			cout << curr->data->get_day() << " ";
 			print_tree(curr->right);
 		}
 	}
 	Node* root;
 	int size;
+	TaskDataBase* db;
 public:
 
 	TreeCollection(TaskDataBase* db)
 	{
 		this->root = nullptr;
 		this->size = 0;
+
+		this->db = db;
+		fill_tree();
 	}
 
 	~TreeCollection()
@@ -62,12 +66,12 @@ public:
 		Task* result = nullptr;
 		while (curr)
 		{
-			if (curr->data.get_day() == day)
+			if (curr->data->get_day() == day)
 			{
-				result = &curr->data;
+				result = curr->data;
 				return result;
 			}
-			if (curr->data.get_day() > day)
+			if (curr->data->get_day() > day)
 				curr = curr->left;
 			else
 				curr = curr->right;
@@ -75,9 +79,9 @@ public:
 		return result;
 	}
 	
-	void insert(Task task)
+	void insert(Task* task)
 	{
-		Node* curr = this->root;
+		/*Node* curr = this->root;
 		if (!curr)
 		{
 			root = new Node(task);
@@ -93,7 +97,7 @@ public:
 				++size;
 				return;
 			}
-			if (curr->data.get_day().length() < task.get_day().length()
+			if (curr->data.get_day().length() <= task.get_day().length()
 				&& curr->right == nullptr)
 			{
 				curr->right = new Node(task);
@@ -104,6 +108,30 @@ public:
 				curr = curr->left;
 			else
 				curr = curr->right;
+		}*/
+		Node* curr = new Node(task);
+
+		if (this->root == nullptr) {
+			this->root = curr;
+			return;
+		}
+
+		Node* currNode = root;
+		while (true) {
+			if (task->get_day().length() <= currNode->data->get_day().length()) {
+				if (currNode->left == nullptr) {
+					currNode->left = curr;
+					break;
+				}
+				currNode = currNode->left;
+			}
+			else {
+				if (currNode->right == nullptr) {
+					currNode->right = curr;
+					break;
+				}
+				currNode = currNode->right;
+			}
 		}
 	}
 	void print()
@@ -120,10 +148,10 @@ public:
 		Node* curr = this->root;
 		Node* parent = nullptr;
 		
-		while (curr && curr->data.get_day() != day)
+		while (curr && curr->data->get_day() != day)
 		{
 			parent = curr;
-			if (curr->data.get_day().length() > day.length())
+			if (curr->data->get_day().length() > day.length())
 			{
 				curr = curr->left;
 			}
@@ -161,8 +189,8 @@ public:
 				while (replace->left)
 					replace = replace->left;
 
-				Task replace_value = replace->data;
-				remove(replace_value.get_day());
+				Task* replace_value = replace->data;
+				remove(replace_value->get_day());
 				curr->data = replace_value;
 			}
 			--size;
@@ -195,9 +223,19 @@ public:
 		Node* replace = curr->right;
 		while (replace->left)
 			replace = replace->left;
-		Task replace_value = replace->data;
-		remove(replace_value.get_day());
+		Task* replace_value = replace->data;
+		remove(replace_value->get_day());
 		curr->data = replace_value;
+	}
+
+	void fill_tree()
+	{
+		list<Task*> tasks = this->db->get_tasks();
+		for (int i = 0; i < tasks.size(); i++)
+		{
+			insert(tasks.front());
+			tasks.pop_front();
+		}
 	}
 };
 

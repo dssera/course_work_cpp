@@ -7,6 +7,7 @@
 
 #include "Constants.h"
 #include "User.h"
+#include "Task.h"
 
 using namespace std;
 
@@ -200,10 +201,44 @@ class TaskDataBase : BaseDataBase
 {
 	// this class will work with collection
 public:
-	TaskDataBase(string filename) : BaseDataBase(filename)
+	TaskDataBase(string filename, string username) : BaseDataBase(filename)
 	{
+		this->filename = username + '_' + filename;
+
+		ifstream i_file(this->filename);
+		if (!i_file.is_open())
+		{
+			ofstream file(this->filename);
+			file.close();
+		}
+		i_file.close();
+	}
+
+	list<Task*> get_tasks()
+	{
+		ifstream file(this->filename);
+		if (!file.is_open()) {
+			cout << "Error opening file: " << this->filename << endl;
+			throw exception();
+		}
+		list<Task*> tasks;
+		// list<string> file_lines;
+
+		string line;
+		while (getline(file, line))
+		{
+			list<string> tokens = tokenize_string(line, ';');
+			Task* task = new Task(tokens);
+			tasks.push_back(task);
+		}
+
+		file.close();
+
+		return tasks;
 
 	}
+
+
 
 };
 //DataBase::DataBase(string filename)

@@ -33,8 +33,8 @@ start -> auth -|
 
 /*
 1. Auth [done]
-2. File System [done]
-3. Container [done]
+2. File System [undone]
+3. Container [undone]
 4. Main Functionality [undone]
 5. other [undone]
 */
@@ -59,37 +59,54 @@ PLaaan::
 #include "Container.h"
 #include "MainScreen.h"
 
+//void task_for_lab()
+//{
+//	string a = "ak";
+//	string b = "dmsdsd";
+//
+//	string x = "b";
+//	int x_len = 14;
+//	string sub_a = a;
+//	int a_len = 9;
+//	cout << sub_a.length() << endl;
+//	for (size_t i = 0; i < x_len - a_len; i++)
+//	{
+//		sub_a.append(" ");
+//	}
+//	cout << sub_a.length() << endl;
+//
+//	int count = 0;
+//	for (size_t i = 0; i < x.length(); i++)
+//	{
+//		if (int(x[i]) > int(sub_a[i]) && int(x[i]) < int(b[i]))
+//		{
+//			count++;
+//		}
+//	}
+//	cout << "count: " << count << endl;
+//}
 
 
 int main()
 {
-
-	/*Auth* auth = new Auth(new UserDataBase("auth.txt"));
-	User* user = auth->run_auth_menu();*/
-
-	TreeCollection* collection = new TreeCollection(new TaskDataBase("task.txt"));
 	
-	collection->insert(Task("123456"));
-	collection->insert(Task("12345678"));
-	collection->insert(Task("1234567891011"));
-	collection->insert(Task("1234567"));
-	collection->insert(Task("123"));
-	collection->insert(Task("1234"));
-	// cout << collection->root->data.get_day() << endl;
-	if (Task* temp = collection->find("1234567891011"))
-	{
-		cout << temp->get_day() << endl;
-	}
-	else
-	{
-		cout << "Not found" << endl;
-	}
-	collection->print();
-	collection->remove("12345678");
-	collection->print();
-	cout<<collection->root->data.get_day() << endl;
 	
+	 //MainScreen and TaskDataBase are in developming
+	Auth* auth = new Auth(new UserDataBase("auth.txt"));
+	User* user = auth->run_auth_menu();
 
+	TreeCollection* collection = new TreeCollection(
+		new TaskDataBase("task_db.txt", user->username));
+	// что есди в дерево добавть 2 таски с одинаовым полем day
+	// мое дерево допускает дубли?
+	collection->print();
+	// сейчас данные, которые связаны с нашим юзером считываются
+	// и могут быть получены через get_tasks()
+	// давйа сделаем чтобы наша коллекция заполнялась
+	// Это метод дерева или бд? тепепрь очевидно что дерева
+	// т к  у дерева есть поле бд а не наоброт
+	
+	
 
 	/*MainScreen* mainScreen = new MainScreen(collection, user);
 	mainScreen->run();*/

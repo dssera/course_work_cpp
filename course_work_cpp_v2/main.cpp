@@ -96,7 +96,6 @@ int main()
 	User* user = auth->run_auth_menu();
 	TreeCollection* collection = new TreeCollection(user->get_username());
 
-	user->print_menu();
 	/*MainScreen* mainScreen = new MainScreen(collection, user);
 	mainScreen->run();*/
 

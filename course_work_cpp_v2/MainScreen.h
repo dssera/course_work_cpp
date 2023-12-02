@@ -32,67 +32,15 @@ private:
 	void search_by_event();
 
 
-	void print_user_menu()
-	{
+	void print_user_menu();
+	void print_admin_menu();
 
-	}
-	void print_admin_menu()
-	{
-
-	}
-
-	void user_screen()
-	{
-		int choice;
-		do
-		{
-
-			switch (choice)
-			{
-				case 1:
-					break;
-				default:
-					break;
-			}
-		} while (true);
-	}
-	void admin_screen()
-	{
-		int choice;
-		do
-		{
-
-			switch (choice)
-			{
-			case 1:
-				add_user()
-				break;
-			default:
-				break;
-			}
-		} while (true);
-	}
+	void user_screen();
+	void admin_screen();
 
 
 public:
-	MainScreen(TreeCollection* collection, User* user)
-	{
-		this->collection = collection;
-		this->user = user;
-	}
-
-	void run()
-	{
-		int choice;
-		do
-		{
-			cout << "Your enter: ";
-			cin >> choice;
-			
-			if (user->is_admin()) admin_screen();
-			else user_screen();
-			
-		} while (true);
-	}
+	MainScreen(TreeCollection* collection, User* user);
+	void run();
 };
 

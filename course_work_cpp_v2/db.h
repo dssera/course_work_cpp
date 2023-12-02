@@ -16,7 +16,6 @@ class BaseDataBase
 protected:
 public:
 	string filename;
-	string data;
 
 
 	BaseDataBase(string filename)

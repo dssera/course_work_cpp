@@ -57,7 +57,7 @@ PLaaan::
 #include "Auth.h"
 #include "db.cpp"
 #include "Container.h"
-#include "MainScreen.h"
+//#include "MainScreen.h"
 
 //void task_for_lab()
 //{
@@ -94,31 +94,9 @@ int main()
 	 //MainScreen and TaskDataBase are in developming
 	Auth* auth = new Auth(new UserDataBase("auth.txt"));
 	User* user = auth->run_auth_menu();
+	TreeCollection* collection = new TreeCollection(user->get_username());
 
-	TreeCollection* collection = new TreeCollection(
-		new TaskDataBase("task_db.txt", user->username));
-	// что есди в дерево добавть 2 таски с одинаовым полем day
-	// мое дерево допускает дубли?
-
-	collection->print();
-	/*TaskDataBase* db = new TaskDataBase("task_db.txt", user->username);
-	list<Task*> tasks = db->get_tasks();
-	
-	auto it = tasks.begin();
-	while (it != tasks.end())
-	{
-		cout << (*it)->get_day() << endl;
-		it = tasks.erase(it);
-	}*/
-	// collection->print();
-	// сейчас данные, которые связаны с нашим юзером считываются
-	// и могут быть получены через get_tasks()
-	// давйа сделаем чтобы наша коллекция заполнялась
-	// Это метод дерева или бд? тепепрь очевидно что дерева
-	// т к  у дерева есть поле бд а не наоброт
-	
-	
-
+	user->print_menu();
 	/*MainScreen* mainScreen = new MainScreen(collection, user);
 	mainScreen->run();*/
 

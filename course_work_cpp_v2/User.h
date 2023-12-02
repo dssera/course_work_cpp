@@ -6,24 +6,27 @@ using namespace std;
 
 class BaseUser
 {
-public:
-	string username;
-	string password;
-	bool is_authenticated;
-
 protected:
 	BaseUser(string username, string password);
+	string username;
+	string password;
+	bool _is_admin;
+public:
+	bool is_admin()
+	{
+		return this->_is_admin;
+	}
+	string get_username()
+	{
+		return this->username;
+	}
 };
 
 class User : public BaseUser
 {
-	int access_level;
-
-	void set_access_level(int access_level);
 public:
-	User(string username, string password, int access_level = 0);
-
-	int get_access_level();
-
+	User(string username, string password, bool is_admin = 0);
 };
+
+
 

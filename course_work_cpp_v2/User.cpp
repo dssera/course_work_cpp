@@ -8,16 +8,11 @@ BaseUser::BaseUser(string username, string password)
 	this->password = password;
 }
 
-void User::set_access_level(int access_level)
+
+User::User(string username, string password, bool is_admim)
+	: BaseUser(username, password)
 {
-	this->access_level = access_level;
-}
-User::User(string username, string password, int access_level) : BaseUser(username, password)
-{
-	this->access_level = access_level;
+	this->_is_admin = is_admin;
 }
 
-int User::get_access_level()
-{
-	return this->access_level;
-}
+

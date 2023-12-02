@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 #include <list>
 #include <iostream>
@@ -24,6 +24,7 @@ public:
 		if (list.size() != 5) cout << "Error in Task constructor" << endl;
 		else
 		{
+			// переделай
 			this->day = list.front();
 			list.pop_front();
 			this->time = list.front();

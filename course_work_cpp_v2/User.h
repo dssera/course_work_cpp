@@ -10,7 +10,7 @@ protected:
 	BaseUser(string username, string password);
 	string username;
 	string password;
-	bool _is_admin;
+	int _is_admin;
 public:
 	bool is_admin()
 	{
@@ -25,7 +25,7 @@ public:
 class User : public BaseUser
 {
 public:
-	User(string username, string password, bool is_admin = 0);
+	User(string username, string password, int _is_admin=0);
 };
 
 

@@ -3,3 +3,4 @@ user;user;0
 qwe;12345;0
 dssera3;dssera3;0
 reg;reg;0
+qwe;qwe;0

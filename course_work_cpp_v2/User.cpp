@@ -9,7 +9,7 @@ BaseUser::BaseUser(string username, string password)
 }
 
 
-User::User(string username, string password, bool _is_admim)
+User::User(string username, string password, int _is_admin)
 	: BaseUser(username, password)
 {
 	this->_is_admin = _is_admin;

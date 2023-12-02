@@ -168,30 +168,37 @@ public:
 
 	int get_access_level(string username)
 	{
-		return 0;
-		//ifstream file(this->filename);
-		//if (!file.is_open()) {
-		//	cout << "Error opening file: " << this->filename << endl;
-		//	throw exception();
-		//}
-		//int access_level;
-		//// list<string> file_lines;
+		ifstream file(this->filename);
+		if (!file.is_open()) {
+			cout << "Error opening file: " << this->filename << endl;
+			throw exception();
+		}
+		int access_level = 0;
+		// list<string> file_lines;
 
-		//string line;
-		//while (getline(file, line))
-		//{
-		//	//file_lines.push_back(line);
-		//	list<string> tokens = tokenize_string(line, ';');
-		//	int i = 0;
-		//	for (auto iter = tokens.begin(); i < access_level_index; iter++)
-		//	{
-		//		// will be done tomorrow
-		//	}
-		//}
-
-		//file.close();
-
-		//return access_level;
+		string line;
+		while (getline(file, line))
+		{
+			//file_lines.push_back(line);
+			list<string> tokens = tokenize_string(line, ';');
+			int i = 0;
+			bool user_is_found = 0;
+			for (string token : tokens)
+			{
+				if (i == 0 && token == username)
+				{
+					user_is_found = 1;
+					break;
+				}
+				i++;
+			}
+			if (user_is_found)
+			{
+				access_level = atoi(tokens.back().c_str());
+			}
+		}
+		file.close();
+		return access_level;
 	}
 };
 

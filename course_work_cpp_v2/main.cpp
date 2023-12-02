@@ -94,7 +94,9 @@ int main()
 	 //MainScreen and TaskDataBase are in developming
 	Auth* auth = new Auth(new UserDataBase("auth.txt"));
 	User* user = auth->run_auth_menu();
-	TreeCollection* collection = new TreeCollection(user->get_username());
+	UserDataBase* db = new UserDataBase("auth.txt");
+	cout << db->get_access_level(user->get_username()) << endl;;
+	//TreeCollection* collection = new TreeCollection(user->get_username());
 
 	/*MainScreen* mainScreen = new MainScreen(collection, user);
 	mainScreen->run();*/

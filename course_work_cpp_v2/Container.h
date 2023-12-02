@@ -7,6 +7,7 @@
 class TreeCollection
 {
 private:
+	string days[7] = {"monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"};
 	class Node
 	{
 	public:
@@ -57,6 +58,15 @@ private:
 			it = tasks.erase(it);
 		}
 	}
+
+	int get_index(string day)
+	{
+		for (int i = 0; i < days->length(); i++)
+		{
+			if (day == days[i]) return i + 1;
+		}
+		return 0;
+	}
 public:
 
 	TreeCollection(string username)
@@ -104,7 +114,7 @@ public:
 
 		Node* currNode = root;
 		while (true) {
-			if (task->get_day().length() <= currNode->data->get_day().length()) {
+			if (get_index(task->get_day()) <= get_index(currNode->data->get_day())) {
 				if (currNode->left == nullptr) {
 					currNode->left = curr;
 					break;

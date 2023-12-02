@@ -98,9 +98,8 @@ int main()
 	{
 		cout << "it's admin" << endl;
 	}
-	UserDataBase* db = new UserDataBase("auth.txt");
-
-	//TreeCollection* collection = new TreeCollection(user->get_username());
+	TreeCollection* collection = new TreeCollection(user->get_username());
+	collection->print();
 
 	/*MainScreen* mainScreen = new MainScreen(collection, user);
 	mainScreen->run();*/

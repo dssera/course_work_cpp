@@ -196,7 +196,7 @@ public:
 			delete curr;
 			return;
 		}
-		if (curr->right == nullptr)
+		if (curr->right == nullptr) 
 		{
 			if (parent && parent->left == curr)
 				parent->left = curr->left;
@@ -212,6 +212,11 @@ public:
 		Task* replace_value = replace->data;
 		remove(replace_value->get_day());
 		curr->data = replace_value;
+	}
+	// as static method
+	list<Task*> get_tasks()
+	{
+		return db->get_tasks();
 	}
 };
 

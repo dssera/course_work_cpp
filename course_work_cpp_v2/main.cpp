@@ -57,7 +57,8 @@ PLaaan::
 #include "Auth.h"
 #include "db.cpp"
 #include "Container.h"
-//#include "MainScreen.h"
+#include "MainScreen.h"
+#include "sha256.h"
 
 //void task_for_lab()
 //{
@@ -89,19 +90,19 @@ PLaaan::
 
 int main()
 {
-	
-	
 	 //MainScreen and TaskDataBase are in developming
-	Auth* auth = new Auth(new UserDataBase("auth.txt"));
+	
+
+	/*Auth* auth = new Auth(new UserDataBase("auth.txt"));
 	User* user = auth->run_auth_menu();
 	if (user->is_admin())
 	{
 		cout << "it's admin" << endl;
 	}
 	TreeCollection* collection = new TreeCollection(user->get_username());
-	collection->print();
+	
 
-	/*MainScreen* mainScreen = new MainScreen(collection, user);
+	MainScreen* mainScreen = new MainScreen(collection, user);
 	mainScreen->run();*/
 
 

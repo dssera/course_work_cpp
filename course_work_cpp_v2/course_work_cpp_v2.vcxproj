@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\cpp_libraries\hash-library;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\cpp_libraries\hash-library\sha256.cpp" />
     <ClCompile Include="Auth.cpp" />
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="db.cpp" />
@@ -137,6 +139,7 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\cpp_libraries\hash-library\sha256.h" />
     <ClInclude Include="Auth.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Container.h" />

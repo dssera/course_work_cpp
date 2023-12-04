@@ -109,7 +109,38 @@ public:
 
 		return usernames;
 	}
+	string get_password(string username)
+	{
+		ifstream file(this->filename);
+		if (!file.is_open()) {
+			cout << "Error opening file: " << this->filename << endl;
+			throw exception();
+		}
+		string password = NO_MATCH;
+		// list<string> file_lines;
 
+		string line;
+		while (getline(file, line))
+		{
+			//file_lines.push_back(line);
+			list<string> tokens = tokenize_string(line, ';');
+			int i = 0;
+			if (tokens.front() == username)
+			{
+				for (auto iter = tokens.begin(); i < password_index; iter++)
+				{
+					if (i++ == password_index - 1)
+					{
+						password = *iter;
+					}
+				}
+			}
+		}
+
+		file.close();
+
+		return password;
+	}
 	list<string> get_passwords()
 	{
 		// Если в файлике написан бред то приложение крашится
@@ -141,8 +172,9 @@ public:
 		file.close();
 
 		return passwords;
-
 	}
+
+	
 
 
 	bool add_user(string username, string password)

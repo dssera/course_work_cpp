@@ -9,6 +9,8 @@ User* Auth::run_auth_menu()
 	{
 		int enter;
 		string username, password;
+		SHA256 sha256;
+
 
 		cout << "Auth Menu" << endl << "1.Sign In" << endl
 			<< "2.Sign Up" << endl << "0.Exit" << endl;
@@ -39,6 +41,8 @@ User* Auth::run_auth_menu()
 			cin >> password;
 			//password validation
 			
+			password = sha256(password);
+
 			if (db->add_user(username, password))
 			{
 				cout << "User was added!!" << endl;

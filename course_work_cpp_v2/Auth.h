@@ -2,6 +2,7 @@
 #include "Constants.h"
 #include "User.h"
 #include "db.h"
+#include "sha256.h"
 #include <string>
 using namespace std;
 

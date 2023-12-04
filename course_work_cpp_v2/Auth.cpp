@@ -23,6 +23,7 @@ string Auth::identificate(string username)
 
 User* Auth::auth(string username, string password)
 {
+	// FIX BUG WITH LOGIN FOR ONE ACCOUNT AND USER FOR ANOTHER
 	User* user = nullptr;
 
 	if (identificate(username) == NO_MATCH)
@@ -31,15 +32,14 @@ User* Auth::auth(string username, string password)
 		return nullptr;
 	}
 
-	list<string> passwords = this->db->get_passwords();
-	for (string password_ : passwords)
+	string password_ = this->db->get_password(username);
+	
+	SHA256 sha256;
+	if (sha256(password) == password_)
 	{
-		if (password == password_)
-		{
-			int access_level = this->db->get_access_level(username);
-			user = new User(username, password, access_level);
+		int access_level = this->db->get_access_level(username);
+		user = new User(username, password, access_level);
 
-		}
 	}
 	if (user == nullptr)
 	{

@@ -89,18 +89,17 @@ PLaaan::
 
 int main()
 {
-	 //MainScreen and TaskDataBase are in developming
-
+	// add user_logic.cpp and amdin_logic.cpp
 	Auth* auth = new Auth(new UserDataBase("auth.txt"));
 	User* user = auth->run_auth_menu();
-	if (user->is_admin())
+	/*if (user->is_admin())
 	{
 		cout << "it's admin" << endl;
 	}
 	else
 	{
 		cout << "it is not an admin" << endl;
-	}
+	}*/
 	TreeCollection* collection = new TreeCollection(user->get_username());
 	
 

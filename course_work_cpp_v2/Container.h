@@ -218,5 +218,9 @@ public:
 	{
 		return db->get_tasks();
 	}
+	Task search_by_event()
+	{
+		//return db.
+	}
 };
 

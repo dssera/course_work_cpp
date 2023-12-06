@@ -20,7 +20,7 @@ private:
 	void add_task();
 	void change_task();
 	void delete_task();
-	// u did changes in collection and then save it
+	// u do changes in collection and then save it
 	void save_file();
 	// отмена изменений??
 

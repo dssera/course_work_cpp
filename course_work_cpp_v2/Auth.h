@@ -22,7 +22,6 @@ public:
 	User* run_auth_menu();
 protected:
 	string identificate(string username);
-
 	User* auth(string username, string password);
 	
 };

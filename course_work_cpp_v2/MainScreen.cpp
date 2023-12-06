@@ -66,9 +66,6 @@ void MainScreen::save_file()
 
 }
 // отмена изменений??
-
-
-
 // use hash_table or array to do sort in tree not by .length() but by index of day
 // "monday" : 1, ...
 void MainScreen::print_tasks()
@@ -95,7 +92,7 @@ void MainScreen::print_events_by_day()
 }
 void MainScreen::search_by_event()
 {
-
+	
 }
 
 

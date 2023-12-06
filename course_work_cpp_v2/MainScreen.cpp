@@ -72,12 +72,10 @@ void MainScreen::print_tasks()
 {
 	collection->print();
 }
-void MainScreen::print_events_by_day()
+void MainScreen::print_events_by_day(string day)
 {
-	string day;
+	
 	bool no_data = true;
-	cout << "Enter day: ";
-	cin >> day;
 
 	list<Task*> tasks = collection->get_tasks();
 	for (Task* task : tasks)
@@ -90,9 +88,19 @@ void MainScreen::print_events_by_day()
 	}
 	if (no_data) cout << "There are no data" << endl;
 }
-void MainScreen::search_by_event()
+void MainScreen::search_by_event(string event)
 {
 	
+	Task* match = this->collection->find(event);
+	
+	if (match)
+	{
+		cout << "It's found" << endl << match->get_day() << endl;
+	}
+	else
+	{
+		cout << "not found" << endl;
+	}
 }
 
 
@@ -108,14 +116,27 @@ void MainScreen::user_screen()
 		cout << "0.Exit" << endl;
 
 		cin >> choice;
+		string event;
+		string day;
+
+
 		switch (choice)
 		{
 			case 1:
+				system("cls");
 				print_tasks();
 				break;
 			case 2:
+				cout << "Enter day: ";
+				cin >> day;
 				system("cls");
-				print_events_by_day();
+				print_events_by_day(day);
+				break;
+			case 3:
+				system("cls");
+				cout << "Enter event for search: ";
+				cin >> event;
+				search_by_event(event);
 				break;
 			case 0:
 				system("pause");

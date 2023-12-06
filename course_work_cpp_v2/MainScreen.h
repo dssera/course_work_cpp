@@ -29,8 +29,8 @@ private:
 	// use hash_table or array to do sort in tree not by .length() but by index of day
 	// "monday" : 1, ...
 	void print_tasks();
-	void print_events_by_day();
-	void search_by_event();
+	void print_events_by_day(string day);
+	void search_by_event(string event);
 
 
 	void user_screen();

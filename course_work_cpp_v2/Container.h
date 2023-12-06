@@ -83,19 +83,18 @@ public:
 		delete_tree(root);
 	}
 
-	Task* find(string day)
+	Task* find(string event)
 	{
-		// must me changed because it's simple comparison now
 		Node* curr = this->root;
 		Task* result = nullptr;
 		while (curr)
 		{
-			if (curr->data->get_day() == day)
+			if (curr->data->get_event().find(event) != string::npos)
 			{
 				result = curr->data;
 				return result;
 			}
-			if (curr->data->get_day() > day)
+			if (curr->data->get_event() > event)
 				curr = curr->left;
 			else
 				curr = curr->right;

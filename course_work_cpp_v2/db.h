@@ -234,45 +234,6 @@ public:
 	}
 };
 
-string search_by_criteria(string data,
-	bool (*criteria)(string, string),
-	int index,
-	string pattern)
-	/*
-	* int const phone_field_index = index;
-	int startPos = 0;
-	int endPos = 0;
-	string match = NO_MATCH;
-
-	while ((endPos = data.find('\n', startPos)) != std::string::npos)
-	{
-		std::string line = data.substr(startPos, endPos - startPos);
-		string* fields = tokenize(line);
-
-		if (criteria(fields[index], pattern))
-		{
-			match = line;
-			return csv_to_verbose(match);
-		}
-		startPos = endPos + 1;
-	}
-	return match;
-	*/
-{
-	
-	return "";
-}
-bool criteria_by_phone(string field, string phone_number)
-{
-	if (phone_number == field) return true;
-	else return false;
-}
-
-bool criteria_by_event(string field, string event)
-{
-	if (field.find(event) != string::npos) return true;
-	else return false;
-}
 
 
 class TaskDataBase : BaseDataBase
@@ -316,6 +277,45 @@ public:
 
 	}
 
+	/*string search_by_criteria(string data,
+		bool (*criteria)(string, string),
+		int index,
+		string pattern)
+	{
+		
+		* int const phone_field_index = index;
+		int startPos = 0;
+		int endPos = 0;
+		string match = NO_MATCH;
+
+		while ((endPos = data.find('\n', startPos)) != std::string::npos)
+		{
+			std::string line = data.substr(startPos, endPos - startPos);
+			string* fields = tokenize(line);
+
+			if (criteria(fields[index], pattern))
+			{
+				match = line;
+				return csv_to_verbose(match);
+			}
+			startPos = endPos + 1;
+		}
+		return match;
+		
+
+		return "";
+	}
+	bool criteria_by_phone(string field, string phone_number)
+	{
+		if (phone_number == field) return true;
+		else return false;
+	}
+
+	bool criteria_by_event(string field, string event)
+	{
+		if (field.find(event) != string::npos) return true;
+		else return false;
+	}*/
 
 
 };

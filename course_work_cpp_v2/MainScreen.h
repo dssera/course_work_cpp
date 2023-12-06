@@ -12,19 +12,19 @@ private:
 	// a lot of methods
 
 	void add_user();
+	void print_users();
 	void delete_user();
 	void change_user();
+
 	void add_admin();
+	void print_admins();
 	void delete_admin();
 
 	void add_task();
 	void change_task();
 	void delete_task();
-	// u do changes in collection and then save it
+
 	void save_file();
-	// отмена изменений??
-
-
 
 	// use hash_table or array to do sort in tree not by .length() but by index of day
 	// "monday" : 1, ...
@@ -35,8 +35,6 @@ private:
 
 	void user_screen();
 	void admin_screen();
-
-
 public:
 	MainScreen(TreeCollection* collection, User* user);
 	void run();

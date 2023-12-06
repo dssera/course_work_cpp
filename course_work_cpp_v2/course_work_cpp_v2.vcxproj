@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\cpp_libraries\hash-library\sha256.cpp" />
+    <ClCompile Include="admin_logic.cpp" />
     <ClCompile Include="Auth.cpp" />
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="db.cpp" />
@@ -137,6 +138,7 @@
     <ClCompile Include="MainScreen.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="user_logic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\cpp_libraries\hash-library\sha256.h" />

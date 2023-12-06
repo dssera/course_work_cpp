@@ -36,7 +36,7 @@ private:
 	void user_screen();
 	void admin_screen();
 public:
-	MainScreen(TreeCollection* collection, User* user);
+	MainScreen() {};
 	void run();
 };
 

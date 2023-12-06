@@ -1,20 +1,26 @@
 ﻿#include "MainScreen.h"
+#include "Auth.h"
+
 
 void MainScreen::run()
 {
 	do
 	{
+		Auth* auth = new Auth(new UserDataBase("auth.txt"));
+		User* user = auth->run_auth_menu();
+		TreeCollection* collection = new TreeCollection(user->get_username());
+
+		// is it okey??
+		this->collection = collection;
+		this->user = user;
+
 		if (user->is_admin()) admin_screen();
 		else user_screen();
 
 	} while (true);
 }
 
-MainScreen::MainScreen(TreeCollection* collection, User* user)
-{
-	this->collection = collection;
-	this->user = user;
-}
+
 
 
 // u did changes in collection and then save it
@@ -37,6 +43,7 @@ void MainScreen::user_screen()
 		cout << "1.Print My Tasks" << endl;
 		cout << "2.Print Events for Day" << endl;
 		cout << "3.Find by Event" << endl;
+		cout << "4.Log out" << endl;
 		cout << "0.Exit" << endl;
 
 		cin >> choice;
@@ -62,6 +69,11 @@ void MainScreen::user_screen()
 				cin >> event;
 				search_by_event(event);
 				break;
+			case 4:
+				delete this->user;
+				delete this->collection;
+				system("cls");
+				return;
 			case 0:
 				system("pause");
 				exit(0);

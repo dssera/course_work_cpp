@@ -21,8 +21,6 @@ void MainScreen::run()
 }
 
 
-
-
 // u did changes in collection and then save it
 void MainScreen::save_file()
 {
@@ -41,15 +39,21 @@ void MainScreen::user_screen()
 	do
 	{
 		cout << "1.Print My Tasks" << endl;
-		cout << "2.Print Events for Day" << endl;
-		cout << "3.Find by Event" << endl;
-		cout << "4.Log out" << endl;
+		cout << "2.Add Task" << endl;
+		cout << "3.Change Task" << endl;
+		cout << "4.Delete Task" << endl;
+		cout << "5.Print Events for Day" << endl;
+		cout << "6.Find by Event" << endl;
+		cout << "7.Log out" << endl;
 		cout << "0.Exit" << endl;
 
 		cin >> choice;
-		string event;
+		
 		string day;
-
+		string time;
+		string event;
+		string name;
+		string number;
 
 		switch (choice)
 		{
@@ -57,19 +61,45 @@ void MainScreen::user_screen()
 				system("cls");
 				print_tasks();
 				break;
+
 			case 2:
+				system("cls");
+				cout << "Add Task" << endl;
+				cout << "Enter day" << endl;
+				cin >> day;
+				cout << "Enter time" << endl;
+				cin >> time;
+				cout << "Enter event" << endl;
+				cin >> event;
+				cout << "Enter name" << endl;
+				cin >> name;
+				cout << "Enter number" << endl;
+				cin >> number;
+				add_task(day, time, event, name, number);
+				break;
+			case 3:
+				system("cls");
+				cout << "In development(Change Task)" << endl;
+				// to make this possible you need to add id in each task
+				break;
+			case 4:
+				system("cls");
+				cout << "In development(Delete Task)" << endl;
+				// to make this possible you need to add id in each task
+				break;
+			case 5:
 				cout << "Enter day: ";
 				cin >> day;
 				system("cls");
 				print_events_by_day(day);
 				break;
-			case 3:
+			case 6:
 				system("cls");
 				cout << "Enter event for search: ";
 				cin >> event;
 				search_by_event(event);
 				break;
-			case 4:
+			case 7:
 				delete this->user;
 				delete this->collection;
 				system("cls");
@@ -89,24 +119,46 @@ void MainScreen::admin_screen()
 	int choice;
 	do
 	{
-		cout << "1.Print My Tasks" << endl;
-		cout << "2.Print Events for Day" << endl;
-		cout << "3.Find by Event" << endl;
+		cout << "1.Print Users" << endl;
+		cout << "3.Add User" << endl;
+		cout << "4.Change User" << endl;
+		cout << "2.Print Admins" << endl;
+		cout << "4.Add Admin" << endl;
 		cout << "0.Exit" << endl;
 
-		cout << "Your enter: ";
 		cin >> choice;
+		string event;
+		string day;
+
+
 		switch (choice)
 		{
-			case 1:
-				break;
-			case 0:
-				exit(0);
-				break;
-			default:
-				cout << "Wrong enter." << endl;
-				
-
+		case 1:
+			system("cls");
+			print_tasks();
+			break;
+		case 2:
+			cout << "Enter day: ";
+			cin >> day;
+			system("cls");
+			print_events_by_day(day);
+			break;
+		case 3:
+			system("cls");
+			cout << "Enter event for search: ";
+			cin >> event;
+			search_by_event(event);
+			break;
+		case 4:
+			delete this->user;
+			delete this->collection;
+			system("cls");
+			return;
+		case 0:
+			system("pause");
+			exit(0);
+		default:
+			cout << "Wrong enter." << endl;
 		}
 		system("pause");
 		system("cls");

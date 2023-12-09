@@ -136,7 +136,7 @@
     <ClCompile Include="Interfaces.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainScreen.cpp" />
-    <ClCompile Include="Task.cpp" />
+    <ClCompile Include="Event.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="user_logic.cpp" />
   </ItemGroup>
@@ -147,7 +147,7 @@
     <ClInclude Include="Container.h" />
     <ClInclude Include="db.h" />
     <ClInclude Include="MainScreen.h" />
-    <ClInclude Include="Task.h" />
+    <ClInclude Include="Event.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

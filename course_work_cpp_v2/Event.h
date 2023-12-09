@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class Task
+class Event
 {
 private:
 	string day;
@@ -14,12 +14,12 @@ private:
 	string name;
 	string number;
 public:
-	Task() {}
-	Task(string day)
+	Event() {}
+	Event(string day)
 	{
 		this->day = day;
 	}
-	Task(list<string> list)
+	Event(list<string> list)
 	{
 		if (list.size() != 5) cout << "Error in Task constructor" << endl;
 		else

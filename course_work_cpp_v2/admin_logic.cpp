@@ -1,7 +1,7 @@
 #include "MainScreen.h"
 
 // create
-void MainScreen::add_user()
+void MainScreen::add_user(string username, string password)
 {
 
 }
@@ -13,7 +13,7 @@ void MainScreen::print_users()
 }
 
 // update
-void MainScreen::change_user()
+void MainScreen::change_user_status()
 {
 	/*user = getUser();
 	user.set_status(0|1, current_user);
@@ -28,13 +28,13 @@ void MainScreen::change_user()
 }
 
 // delete
-void MainScreen::delete_user()
+void MainScreen::delete_user(string username)
 {
 
 }
 
 
-void MainScreen::add_admin()
+void MainScreen::add_admin(string username, string password)
 {
 
 }
@@ -42,7 +42,7 @@ void MainScreen::print_admins()
 {
 
 }
-void MainScreen::delete_admin()
+void MainScreen::delete_admin(string username)
 {
 
 }

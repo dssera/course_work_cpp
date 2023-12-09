@@ -11,18 +11,19 @@ private:
 
 	// a lot of methods
 
-	void add_user();
+	void add_user(string username, string password);
 	void print_users();
-	void delete_user();
-	void change_user();
+	void delete_user(string username);
+	void change_user_status();
 
-	void add_admin();
+	void add_admin(string username, string password);
 	void print_admins();
-	void delete_admin();
+	void delete_admin(string username);
 
-	void add_task();
-	void change_task();
-	void delete_task();
+	void add_task(string day, string time,
+		string event, string name, string number);
+	void change_task(int id);
+	void delete_task(int id);
 
 	void save_file();
 

@@ -7,7 +7,7 @@
 
 #include "Constants.h"
 #include "User.h"
-#include "Task.h"
+#include "Event.h"
 
 using namespace std;
 
@@ -253,21 +253,21 @@ public:
 		i_file.close();
 	}
 
-	list<Task*> get_tasks()
+	list<Event*> get_tasks()
 	{
 		ifstream file(this->filename);
 		if (!file.is_open()) {
 			cout << "Error opening file: " << this->filename << endl;
 			throw exception();
 		}
-		list<Task*> tasks;
+		list<Event*> tasks;
 		// list<string> file_lines;
 
 		string line;
 		while (getline(file, line))
 		{
 			list<string> tokens = tokenize_string(line, ';');
-			Task* task = new Task(tokens);
+			Event* task = new Event(tokens);
 			tasks.push_back(task);
 		}
 

@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "db.h"
 #include "User.h"
-#include "Task.h"
+#include "Event.h"
 
 
 class TreeCollection
@@ -11,11 +11,11 @@ private:
 	class Node
 	{
 	public:
-		Task* data;
+		Event* data;
 		Node* left;
 		Node* right;
 	
-		Node(Task* val)
+		Node(Event* val)
 		{
 			left = nullptr;
 			right = nullptr;
@@ -49,7 +49,7 @@ private:
 
 	void fill_tree()
 	{
-		list<Task*> tasks = this->db->get_tasks();
+		list<Event*> tasks = this->db->get_tasks();
 
 		auto it = tasks.begin();
 		while (it != tasks.end())
@@ -83,10 +83,10 @@ public:
 		delete_tree(root);
 	}
 
-	Task* find(string event)
+	Event* find(string event)
 	{
 		Node* curr = this->root;
-		Task* result = nullptr;
+		Event* result = nullptr;
 		while (curr)
 		{
 			if (curr->data->get_event().find(event) != string::npos)
@@ -102,7 +102,7 @@ public:
 		return result;
 	}
 	
-	void insert(Task* task)
+	void insert(Event* task)
 	{
 		Node* curr = new Node(task);
 
@@ -178,7 +178,7 @@ public:
 				while (replace->left)
 					replace = replace->left;
 
-				Task* replace_value = replace->data;
+				Event* replace_value = replace->data;
 				remove(replace_value->get_day());
 				curr->data = replace_value;
 			}
@@ -208,16 +208,16 @@ public:
 		Node* replace = curr->right;
 		while (replace->left)
 			replace = replace->left;
-		Task* replace_value = replace->data;
+		Event* replace_value = replace->data;
 		remove(replace_value->get_day());
 		curr->data = replace_value;
 	}
 	// as static method
-	list<Task*> get_tasks()
+	list<Event*> get_tasks()
 	{
 		return db->get_tasks();
 	}
-	Task search_by_event()
+	Event search_by_event()
 	{
 		//return db.
 	}

@@ -22,7 +22,7 @@ private:
 
 	void add_task(string day, string time,
 		string event, string name, string number);
-	void change_task(int id);
+	void change_task(int id, int choice);
 	void delete_task(int id);
 
 	void save_file();

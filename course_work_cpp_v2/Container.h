@@ -42,7 +42,8 @@ private:
 		if (curr)
 		{
 			print_tree(curr->left);
-			cout << curr->data->get_day() << " ";
+			cout << "id:" << curr->data->get_id() << endl;
+			cout << "day:" << curr->data->get_day() << endl;
 			print_tree(curr->right);
 		}
 	}
@@ -83,7 +84,7 @@ public:
 		delete_tree(root);
 	}
 
-	Event* find(string event)
+	Event* find_by_event(string event)
 	{
 		Node* curr = this->root;
 		Event* result = nullptr;
@@ -101,6 +102,24 @@ public:
 		}
 		return result;
 	}
+	Event* find_by_id(int id)
+	{
+		Node* curr = this->root;
+		Event* result = nullptr;
+		while (curr)
+		{
+			if (curr->data->get_id() == id)
+			{
+				result = curr->data;
+				return result;
+			}
+			if (curr->data->get_id() > id)
+				curr = curr->left;
+			else
+				curr = curr->right;
+		}
+		return result;
+	}
 	
 	void insert(Event* task)
 	{
@@ -108,6 +127,8 @@ public:
 
 		if (this->root == nullptr) {
 			this->root = curr;
+			size++;
+			curr->data->set_id(size);
 			return;
 		}
 
@@ -128,6 +149,8 @@ public:
 				currNode = currNode->right;
 			}
 		}
+		size++;
+		curr->data->set_id(size);
 	}
 
 	void print()
@@ -136,15 +159,15 @@ public:
 		cout << endl;
 	}
 
-	void remove(string day)
+	void remove(int id)
 	{
 		Node* curr = this->root;
 		Node* parent = nullptr;
 		
-		while (curr && curr->data->get_day() != day)
+		while (curr && curr->data->get_id() != id)
 		{
 			parent = curr;
-			if (curr->data->get_day().length() > day.length())
+			if (curr->data->get_id() > id)
 			{
 				curr = curr->left;
 			}
@@ -179,7 +202,7 @@ public:
 					replace = replace->left;
 
 				Event* replace_value = replace->data;
-				remove(replace_value->get_day());
+				remove(replace_value->get_id());
 				curr->data = replace_value;
 			}
 			--size;
@@ -209,7 +232,7 @@ public:
 		while (replace->left)
 			replace = replace->left;
 		Event* replace_value = replace->data;
-		remove(replace_value->get_day());
+		remove(replace_value->get_id());
 		curr->data = replace_value;
 	}
 	// as static method

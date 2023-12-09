@@ -55,6 +55,9 @@ void MainScreen::user_screen()
 		string name;
 		string number;
 
+		int task_id;
+		int buffer;
+
 		switch (choice)
 		{
 			case 1:
@@ -79,7 +82,13 @@ void MainScreen::user_screen()
 				break;
 			case 3:
 				system("cls");
-				cout << "In development(Change Task)" << endl;
+				cout << "Enter which task you want to change(id): ";
+				cin >> task_id;
+				cout << "Enter field which you want to change: " << endl;
+				cout << "1.Day" << endl << "2.Time" << endl << "3.Event" << endl
+					<< "4.Name" << endl << "5.Number" << endl;
+				cin >> buffer;
+				change_task(task_id, buffer);
 				// to make this possible you need to add id in each task
 				break;
 			case 4:

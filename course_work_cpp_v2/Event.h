@@ -13,7 +13,7 @@ private:
 	int id;
 	string day;
 	string time;
-	string event;
+	string event_name;
 	string name;
 	string number;
 public:
@@ -34,7 +34,7 @@ public:
 			list.pop_front();
 			this->time = list.front();
 			list.pop_front();
-			this->event = list.front();
+			this->event_name = list.front();
 			list.pop_front();
 			this->name = list.front();
 			list.pop_front();
@@ -43,11 +43,11 @@ public:
 		}
 	}
 	Event(string day, string time,
-		string event, string name, string number)
+		string event_name, string name, string number)
 	{
 		this->day = day;
 		this->time = time;
-		this->event = event;
+		this->event_name = event_name;
 		this->name = name;
 		this->number = number;
 	}
@@ -75,13 +75,13 @@ public:
 	{
 		this->time = time;
 	}
-	string get_event()
+	string get_event_name()
 	{
-		return this->event;
+		return this->event_name;
 	}
-	void set_event(string event)
+	void set_event_name(string event_name)
 	{
-		this->event = event;
+		this->event_name = event_name;
 	}
 	string get_name()
 	{

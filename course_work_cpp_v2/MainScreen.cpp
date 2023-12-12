@@ -51,11 +51,10 @@ void MainScreen::user_screen()
 		
 		string day;
 		string time;
-		string event;
+		string event_name;
 		string name;
 		string number;
 
-		int task_id;
 		int buffer;
 
 		switch (choice)
@@ -73,27 +72,29 @@ void MainScreen::user_screen()
 				cout << "Enter time" << endl;
 				cin >> time;
 				cout << "Enter event" << endl;
-				cin >> event;
+				cin >> event_name;
 				cout << "Enter name" << endl;
 				cin >> name;
 				cout << "Enter number" << endl;
 				cin >> number;
-				add_task(day, time, event, name, number);
+				add_task(day, time, event_name, name, number);
 				break;
 			case 3:
 				system("cls");
-				cout << "Enter which task you want to change(id): ";
-				cin >> task_id;
+				/*cout << "Enter which task you want to change(id): ";
+				cin >> event_name;
 				cout << "Enter field which you want to change: " << endl;
 				cout << "1.Day" << endl << "2.Time" << endl << "3.Event" << endl
 					<< "4.Name" << endl << "5.Number" << endl;
 				cin >> buffer;
-				change_task(task_id, buffer);
+				change_task(task_id, buffer);*/
 				// to make this possible you need to add id in each task
 				break;
 			case 4:
 				system("cls");
-				cout << "In development(Delete Task)" << endl;
+				cout << "Enter task id which you want to delete: ";
+				cin >> event_name;
+				delete_task(event_name);
 				// to make this possible you need to add id in each task
 				break;
 			case 5:
@@ -105,8 +106,8 @@ void MainScreen::user_screen()
 			case 6:
 				system("cls");
 				cout << "Enter event for search: ";
-				cin >> event;
-				search_by_event(event);
+				cin >> event_name;
+				search_by_event(event_name);
 				break;
 			case 7:
 				delete this->user;

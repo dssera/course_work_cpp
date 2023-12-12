@@ -25,7 +25,7 @@ void MainScreen::print_events_by_day(string day)
 	{
 		if (task->get_day() == day)
 		{
-			cout << task->get_event() << endl;
+			cout << task->get_event_name() << endl;
 			no_data = false;
 		}
 	}
@@ -63,7 +63,7 @@ void MainScreen::change_task(int id, int choice)
 		event->set_time(new_data);
 		break;
 	case 3:
-		event->set_event(new_data);
+		event->set_event_name(new_data);
 		break;
 	case 4:
 		event->set_name(new_data);
@@ -77,7 +77,7 @@ void MainScreen::change_task(int id, int choice)
 }
 
 // delete
-void MainScreen::delete_task(int id)
+void MainScreen::delete_task(string event_name)
 {
-	this->collection->remove(id);
+	this->collection->delete_by_name(event_name);
 }

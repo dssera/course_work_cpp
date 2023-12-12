@@ -27,47 +27,13 @@ private:
 	TaskDataBase* db;
 
 
-	void delete_tree(Node* curr)
-	{
-		if (curr)
-		{
-			delete_tree(curr->left);
-			delete_tree(curr->right);
-			delete curr;
-		}
-	}
+	void delete_tree(Node* curr);
 
-	void print_tree(Node* curr)
-	{
-		if (curr)
-		{
-			print_tree(curr->left);
-			cout << "id:" << curr->data->get_id() << endl;
-			cout << "day:" << curr->data->get_day() << endl;
-			print_tree(curr->right);
-		}
-	}
+	void print_tree(Node* curr);
 
-	void fill_tree()
-	{
-		list<Event*> tasks = this->db->get_tasks();
+	void fill_tree();
 
-		auto it = tasks.begin();
-		while (it != tasks.end())
-		{
-			insert(*it);
-			it = tasks.erase(it);
-		}
-	}
-
-	int get_index(string day)
-	{
-		for (int i = 0; i < days->length(); i++)
-		{
-			if (day == days[i]) return i + 1;
-		}
-		return 0;
-	}
+	int get_index(string day);
 public:
 
 	TreeCollection(string username)
@@ -84,165 +50,21 @@ public:
 		delete_tree(root);
 	}
 
-	Event* find_by_event(string event)
-	{
-		Node* curr = this->root;
-		Event* result = nullptr;
-		while (curr)
-		{
-			if (curr->data->get_event().find(event) != string::npos)
-			{
-				result = curr->data;
-				return result;
-			}
-			if (curr->data->get_event() > event)
-				curr = curr->left;
-			else
-				curr = curr->right;
-		}
-		return result;
-	}
-	Event* find_by_id(int id)
-	{
-		Node* curr = this->root;
-		Event* result = nullptr;
-		while (curr)
-		{
-			if (curr->data->get_id() == id)
-			{
-				result = curr->data;
-				return result;
-			}
-			if (curr->data->get_id() > id)
-				curr = curr->left;
-			else
-				curr = curr->right;
-		}
-		return result;
-	}
+	Event* find_by_event(string event);
+	Event* find_by_id(int id);
 	
-	void insert(Event* task)
-	{
-		Node* curr = new Node(task);
+	void insert(Event* task);
 
-		if (this->root == nullptr) {
-			this->root = curr;
-			size++;
-			curr->data->set_id(size);
-			return;
-		}
+	void print();
 
-		Node* currNode = root;
-		while (true) {
-			if (get_index(task->get_day()) <= get_index(currNode->data->get_day())) {
-				if (currNode->left == nullptr) {
-					currNode->left = curr;
-					break;
-				}
-				currNode = currNode->left;
-			}
-			else {
-				if (currNode->right == nullptr) {
-					currNode->right = curr;
-					break;
-				}
-				currNode = currNode->right;
-			}
-		}
-		size++;
-		curr->data->set_id(size);
-	}
+	void remove(string day);
+	// delete and create method with tree traversal and if statement
+	list<Event*> get_tasks();
+	void delete_by_id_(Node* parent, Node* curr, string event_name);
 
-	void print()
-	{
-		print_tree(this->root);
-		cout << endl;
-	}
+	void delete_by_name(string event_name);
 
-	void remove(int id)
-	{
-		Node* curr = this->root;
-		Node* parent = nullptr;
-		
-		while (curr && curr->data->get_id() != id)
-		{
-			parent = curr;
-			if (curr->data->get_id() > id)
-			{
-				curr = curr->left;
-			}
-			else
-			{
-				curr = curr->right;
-			}
-		}
-		if (!curr)
-			return;
-		if (curr == root)
-		{
-			if (curr->left == nullptr && curr->right == nullptr)
-			{
-				delete curr;
-				root = nullptr;
-			}
-			else if (curr->left == nullptr)
-			{
-				root = curr->right;
-				delete curr;
-			}
-			else if (curr->right == nullptr)
-			{
-				root = curr->left;
-				delete curr;
-			}
-			else
-			{
-				Node* replace = curr->right;
-				while (replace->left)
-					replace = replace->left;
 
-				Event* replace_value = replace->data;
-				remove(replace_value->get_id());
-				curr->data = replace_value;
-			}
-			--size;
-			return;
-		}
-		if (curr->left == nullptr)
-		{
-			if (parent && parent->left == curr)
-				parent->left = curr->right;
-			if (parent && parent->right == curr)
-				parent->right = curr->right;
-			--size;
-			delete curr;
-			return;
-		}
-		if (curr->right == nullptr) 
-		{
-			if (parent && parent->left == curr)
-				parent->left = curr->left;
-			if (parent && parent->right == curr)
-				parent->right = curr->left;
-			--size;
-			delete curr;
-			return;
-		}
-		Node* replace = curr->right;
-		while (replace->left)
-			replace = replace->left;
-		Event* replace_value = replace->data;
-		remove(replace_value->get_id());
-		curr->data = replace_value;
-	}
-	// as static method
-	list<Event*> get_tasks()
-	{
-		return db->get_tasks();
-	}
-	Event search_by_event()
-	{
-		//return db.
-	}
+
 };
 

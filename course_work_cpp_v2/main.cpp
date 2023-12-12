@@ -90,12 +90,19 @@ PLaaan::
 int main()
 {
 	// add user_logic.cpp and amdin_logic.cpp
+
+	MainScreen* main_screen = new MainScreen();
+	main_screen->run();
 	
-	MainScreen* mainScreen = new MainScreen();
-	mainScreen->run();
+
+}
 
 
-	/*setconsolecp(1251);
+
+
+
+
+/*setconsolecp(1251);
 	setconsoleoutputcp(1251);
 	tree* tree = new tree(task("12345"));
 	task task("1234");
@@ -118,8 +125,8 @@ int main()
 	//User* user = auth->run_auth_menu();
 	//cout << "Your username: " << user->username << endl <<
 	//	"Your password: " << user->password<< endl;
-	
-	
+
+
 	/*cout << user->get_access_level() << endl;
 	if (user->get_access_level() == 1)
 	{
@@ -128,27 +135,27 @@ int main()
 	else {
 		cout << "You are not admin" << endl;
 	}*/
-	
+
 
 	//// collection gotta take the data from files(dataBase) that are related with user
 	//// soo, we can make the name of the db as "db_"+"username"
 
 	//Container* collection = new Container(new TaskDataBase("task.txt"), user);
-	
+
 
 	//MainScreen mainScreen = new MainScreen(collection, user);
 	//// collection has access to dataBase which has access to files
 	//mainScreen->run();
 
 
-	
 
 
 
 
 
 
-	
+
+
 
 
 
@@ -161,8 +168,8 @@ int main()
 
 	cout << arr[0] << endl << arr[1] << endl;*/
 
-	
-	
+
+
 
 
 
@@ -186,6 +193,3 @@ int main()
 
 
 
-
-	return 0;
-}

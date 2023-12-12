@@ -26,12 +26,14 @@ private:
 	int size;
 	TaskDataBase* db;
 
+	void print_tree(Node* curr);
+	void print_tree_by_day(Node* curr, string day);
+
+	void find_by_event_name_(Node* curr, string event_name);
+	Event* get_by_event_name_(Node* curr, string event_name);
 
 	void delete_tree(Node* curr);
-
 	void delete_by_id_(Node* parent, Node* curr, string event_name);
-
-	void print_tree(Node* curr);
 
 	void fill_tree();
 
@@ -52,11 +54,14 @@ public:
 		delete_tree(root);
 	}
 
-	Event* find_by_event(string event);
+	void find_by_event_name(string event_name);
+	Event* get_by_event_name(string event_name);
 	
 	void insert(Event* task);
 
 	void print();
+	void print_by_day(string day);
+
 
 	void remove(string day);
 	// delete and create method with tree traversal and if statement

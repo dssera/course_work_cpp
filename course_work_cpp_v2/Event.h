@@ -90,5 +90,12 @@ public:
 	{
 		this->number = number;
 	}
+
+	void print()
+	{
+		cout << "event name: " << this->event_name << endl <<
+			"day: " << this->day << endl <<
+			"time: " << this->time << endl;
+	}
 };
 

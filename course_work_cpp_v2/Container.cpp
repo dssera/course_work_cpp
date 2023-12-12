@@ -20,6 +20,19 @@ void TreeCollection::print_tree(Node* curr)
 		print_tree(curr->right);
 	}
 }
+void TreeCollection::print_tree_by_day(Node* curr, string day)
+{
+	if (curr)
+	{
+		print_tree_by_day(curr->left, day);
+		if (curr->data->get_day() == day)
+		{
+			cout << "day:" << curr->data->get_day() << endl;
+			cout << "event_name: " << curr->data->get_event_name() << endl;
+		}
+		print_tree_by_day(curr->right, day);
+	}
+}
 
 void TreeCollection::fill_tree()
 {
@@ -42,25 +55,28 @@ int TreeCollection::get_index(string day)
 	return 0;
 }
 
-Event* TreeCollection::find_by_event(string event)
+void TreeCollection::find_by_event_name(string event_name)
 {
-	// этот метод не работает. Он делает обход по ключу event_name но дерево отсортированно по другосу ключу
-
 	Node* curr = this->root;
-	Event* result = nullptr;
-	while (curr)
+	find_by_event_name_(curr, event_name);
+	cout << endl;
+}
+void TreeCollection::find_by_event_name_(Node* curr, string event_name)
+{
+	// можно было бы возвращать указатель на найденный объект НО
+	// как делать это в рекурсии?? пока что заменю на простой вывод
+	// кстати из за рекурсии + условия оно рабоатет так, что выводит все совпадения
+	// я не планировал так делать но это даже круче
+	if (curr)
 	{
-		if (curr->data->get_event_name().find(event) != string::npos)
+		find_by_event_name_(curr->left, event_name);
+		find_by_event_name_(curr->right, event_name);
+
+		if (curr->data->get_event_name().find(event_name) != string::npos)
 		{
-			result = curr->data;
-			return result;
+			curr->data->print();
 		}
-		if (curr->data->get_event_name() > event)
-			curr = curr->left;
-		else
-			curr = curr->right;
 	}
-	return result;
 }
 
 
@@ -99,6 +115,12 @@ void TreeCollection::print()
 	print_tree(this->root);
 	cout << endl;
 }
+void TreeCollection::print_by_day(string day)
+{
+	print_tree_by_day(this->root, day);
+	cout << endl;
+}
+
 
 void TreeCollection::remove(string day)
 {
@@ -290,4 +312,30 @@ void TreeCollection::delete_by_id_(Node* parent, Node* curr, string event_name)
 void TreeCollection::delete_by_event_name(string event_name)
 {
 	delete_by_id_(nullptr, root, event_name);
+}
+
+Event* TreeCollection::get_by_event_name(string event_name)
+{
+	return get_by_event_name_(this->root, event_name);
+}
+Event* TreeCollection::get_by_event_name_(Node* curr, string event_name)
+{
+	if (curr)
+	{
+		Event* result = nullptr;
+
+		if (curr->data->get_event_name() == event_name) {
+			result = curr->data;
+		}
+
+		if (!result) {
+			result = get_by_event_name_(curr->left, event_name);
+		}
+		if (!result) {
+			result = get_by_event_name_(curr->right, event_name);
+		}
+
+		return result;
+	}
+	return nullptr;
 }

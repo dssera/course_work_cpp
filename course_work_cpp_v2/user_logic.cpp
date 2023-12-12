@@ -17,40 +17,20 @@ void MainScreen::print_tasks()
 
 void MainScreen::print_events_by_day(string day)
 {
-
-	bool no_data = true;
-
-	list<Event*> tasks = collection->get_tasks();
-	for (Event* task : tasks)
-	{
-		if (task->get_day() == day)
-		{
-			cout << task->get_event_name() << endl;
-			no_data = false;
-		}
-	}
-	if (no_data) cout << "There are no data" << endl;
+	collection->print_by_day(day);
 }
 
-void MainScreen::search_by_event(string event)
+void MainScreen::search_by_event(string event_name)
 {
-
-	Event* match = this->collection->find_by_event(event);
-
-	if (match)
-	{
-		cout << "It's found" << endl << match->get_day() << endl;
-	}
-	else
-	{
-		cout << "not found" << endl;
-	}
+	this->collection->find_by_event_name(event_name);
 }
 
 // update
-void MainScreen::change_task(int id, int choice)
+void MainScreen::change_task(string event_name, int choice)
 {
-	/*Event* event = collection->find_by_id(id);
+	Event* event = collection->get_by_event_name(event_name);
+	event->print();
+	system("pause");
 	string new_data;
 	cout << "Enter new value for field: ";
 	cin >> new_data;
@@ -73,7 +53,7 @@ void MainScreen::change_task(int id, int choice)
 		break;
 	default:
 		break;
-	}*/
+	}
 }
 
 // delete

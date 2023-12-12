@@ -20,18 +20,18 @@ private:
 	void print_admins();
 	void delete_admin(string username);
 
-	void add_task(string day, string time,
+	void add_event(string day, string time,
 		string event, string name, string number);
-	void change_task(string event_name, int choice);
-	void delete_task(string event_name);
+	void change_event(string event_name, int choice);
+	void delete_event(string event_name);
 
-	void save_file();
+	void save_in_file();
 
 	// use hash_table or array to do sort in tree not by .length() but by index of day
 	// "monday" : 1, ...
-	void print_tasks();
+	void print_events();
 	void print_events_by_day(string day);
-	void search_by_event(string event);
+	void print_events_by_event_name(string event);
 
 
 	void user_screen();

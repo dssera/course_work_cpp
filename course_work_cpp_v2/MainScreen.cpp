@@ -22,7 +22,7 @@ void MainScreen::run()
 
 
 // u did changes in collection and then save it
-void MainScreen::save_file()
+void MainScreen::save_in_file()
 {
 
 }
@@ -61,7 +61,7 @@ void MainScreen::user_screen()
 		{
 			case 1:
 				system("cls");
-				print_tasks();
+				print_events();
 				break;
 
 			case 2:
@@ -77,7 +77,7 @@ void MainScreen::user_screen()
 				cin >> name;
 				cout << "Enter number" << endl;
 				cin >> number;
-				add_task(day, time, event_name, name, number);
+				add_event(day, time, event_name, name, number);
 				break;
 			case 3:
 				system("cls");
@@ -87,14 +87,14 @@ void MainScreen::user_screen()
 				cout << "1.Day" << endl << "2.Time" << endl << "3.Event" << endl
 					<< "4.Name" << endl << "5.Number" << endl;
 				cin >> buffer;
-				change_task(event_name, buffer);
+				change_event(event_name, buffer);
 				// to make this possible you need to add id in each task
 				break;
 			case 4:
 				system("cls");
-				cout << "Enter task id which you want to delete: ";
+				cout << "Enter event name which you want to delete: ";
 				cin >> event_name;
-				delete_task(event_name);
+				delete_event(event_name);
 				// to make this possible you need to add id in each task
 				break;
 			case 5:
@@ -107,7 +107,7 @@ void MainScreen::user_screen()
 				system("cls");
 				cout << "Enter event for search: ";
 				cin >> event_name;
-				search_by_event(event_name);
+				print_events_by_event_name(event_name);
 				break;
 			case 7:
 				delete this->user;
@@ -145,7 +145,7 @@ void MainScreen::admin_screen()
 		{
 		case 1:
 			system("cls");
-			print_tasks();
+			print_events();
 			break;
 		case 2:
 			cout << "Enter day: ";
@@ -157,7 +157,7 @@ void MainScreen::admin_screen()
 			system("cls");
 			cout << "Enter event for search: ";
 			cin >> event;
-			search_by_event(event);
+			print_events_by_event_name(event);
 			break;
 		case 4:
 			delete this->user;

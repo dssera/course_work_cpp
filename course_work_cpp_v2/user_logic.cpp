@@ -1,7 +1,7 @@
 #include "MainScreen.h"
 
 // create
-void MainScreen::add_task(string day, string time, 
+void MainScreen::add_event(string day, string time, 
 	string event, string name, string number)
 {
 	Event* event_obj = new Event(day, time, event, name, number);
@@ -10,7 +10,7 @@ void MainScreen::add_task(string day, string time,
 }
 
 // read
-void MainScreen::print_tasks()
+void MainScreen::print_events()
 {
 	collection->print(); 
 }
@@ -20,13 +20,13 @@ void MainScreen::print_events_by_day(string day)
 	collection->print_by_day(day);
 }
 
-void MainScreen::search_by_event(string event_name)
+void MainScreen::print_events_by_event_name(string event_name)
 {
 	this->collection->find_by_event_name(event_name);
 }
 
 // update
-void MainScreen::change_task(string event_name, int choice)
+void MainScreen::change_event(string event_name, int choice)
 {
 	Event* event = collection->get_by_event_name(event_name);
 	event->print();
@@ -57,7 +57,7 @@ void MainScreen::change_task(string event_name, int choice)
 }
 
 // delete
-void MainScreen::delete_task(string event_name)
+void MainScreen::delete_event(string event_name)
 {
 	this->collection->delete_by_event_name(event_name);
 }

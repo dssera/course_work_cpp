@@ -50,7 +50,7 @@ void MainScreen::search_by_event(string event)
 // update
 void MainScreen::change_task(int id, int choice)
 {
-	Event* event = collection->find_by_id(id);
+	/*Event* event = collection->find_by_id(id);
 	string new_data;
 	cout << "Enter new value for field: ";
 	cin >> new_data;
@@ -73,11 +73,11 @@ void MainScreen::change_task(int id, int choice)
 		break;
 	default:
 		break;
-	}
+	}*/
 }
 
 // delete
 void MainScreen::delete_task(string event_name)
 {
-	this->collection->delete_by_name(event_name);
+	this->collection->delete_by_event_name(event_name);
 }

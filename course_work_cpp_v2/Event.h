@@ -10,7 +10,6 @@ class Event
 private:
 	const int fields_count = 5;
 
-	int id;
 	string day;
 	string time;
 	string event_name;
@@ -50,14 +49,6 @@ public:
 		this->event_name = event_name;
 		this->name = name;
 		this->number = number;
-	}
-	int get_id()
-	{
-		return this->id;
-	}
-	void set_id(int id)
-	{
-		this->id = id;
 	}
 	string get_day()
 	{

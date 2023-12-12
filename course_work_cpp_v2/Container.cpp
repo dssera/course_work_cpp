@@ -15,7 +15,6 @@ void TreeCollection::print_tree(Node* curr)
 	if (curr)
 	{
 		print_tree(curr->left);
-		cout << "id:" << curr->data->get_id() << endl;
 		cout << "day:" << curr->data->get_day() << endl;
 		cout << "event_name: " << curr->data->get_event_name() << endl;
 		print_tree(curr->right);
@@ -63,24 +62,7 @@ Event* TreeCollection::find_by_event(string event)
 	}
 	return result;
 }
-Event* TreeCollection::find_by_id(int id)
-{
-	Node* curr = this->root;
-	Event* result = nullptr;
-	while (curr)
-	{
-		if (curr->data->get_id() == id)
-		{
-			result = curr->data;
-			return result;
-		}
-		if (curr->data->get_id() > id)
-			curr = curr->left;
-		else
-			curr = curr->right;
-	}
-	return result;
-}
+
 
 void TreeCollection::insert(Event* task)
 {
@@ -89,7 +71,6 @@ void TreeCollection::insert(Event* task)
 	if (this->root == nullptr) {
 		this->root = curr;
 		size++;
-		curr->data->set_id(size);
 		return;
 	}
 
@@ -111,7 +92,6 @@ void TreeCollection::insert(Event* task)
 		}
 	}
 	size++;
-	curr->data->set_id(size);
 }
 
 void TreeCollection::print()
@@ -125,10 +105,10 @@ void TreeCollection::remove(string day)
 	Node* curr = this->root;
 	Node* parent = nullptr;
 
-	while (curr && curr->data->get_day() != day)
+	while (curr && get_index(curr->data->get_day()) != get_index(day))
 	{
 		parent = curr;
-		if (curr->data->get_day() > day)
+		if (get_index(curr->data->get_day()) > get_index(day))
 		{
 			curr = curr->left;
 		}
@@ -307,7 +287,7 @@ void TreeCollection::delete_by_id_(Node* parent, Node* curr, string event_name)
 	}
 }
 
-void TreeCollection::delete_by_name(string event_name)
+void TreeCollection::delete_by_event_name(string event_name)
 {
 	delete_by_id_(nullptr, root, event_name);
 }

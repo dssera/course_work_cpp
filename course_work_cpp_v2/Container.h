@@ -29,6 +29,8 @@ private:
 
 	void delete_tree(Node* curr);
 
+	void delete_by_id_(Node* parent, Node* curr, string event_name);
+
 	void print_tree(Node* curr);
 
 	void fill_tree();
@@ -51,7 +53,6 @@ public:
 	}
 
 	Event* find_by_event(string event);
-	Event* find_by_id(int id);
 	
 	void insert(Event* task);
 
@@ -60,9 +61,8 @@ public:
 	void remove(string day);
 	// delete and create method with tree traversal and if statement
 	list<Event*> get_tasks();
-	void delete_by_id_(Node* parent, Node* curr, string event_name);
 
-	void delete_by_name(string event_name);
+	void delete_by_event_name(string event_name);
 
 
 

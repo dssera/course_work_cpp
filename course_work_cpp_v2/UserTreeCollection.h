@@ -24,6 +24,7 @@ private:
 	UserDataBase* db;
 
 	void print_(Node* curr);
+	void print_admins_(Node* curr);
 	void delete_tree(Node* curr);
 
 	void fill_tree();
@@ -44,7 +45,9 @@ public:
 
 	void insert(User* user);
 	void print();
-	void remove(string day);
+	void print_admins();
+	User* find(string username);
+	void remove(string username);
 
 };
 

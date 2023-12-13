@@ -16,7 +16,7 @@ private:
 	void add_user(string username, string password);
 	void print_users();
 	void delete_user(string username);
-	void change_user_status();
+	void change_access_level(int access_level, string username);
 
 	void add_admin(string username, string password);
 	void print_admins();

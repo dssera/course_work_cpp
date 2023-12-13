@@ -134,36 +134,73 @@ void MainScreen::admin_screen()
 	do
 	{
 		cout << "1.Print Users" << endl;
-		cout << "3.Add User" << endl;
-		cout << "4.Change User" << endl;
-		cout << "2.Print Admins" << endl;
-		cout << "4.Add Admin" << endl;
+		cout << "2.Add User" << endl;
+		cout << "3.Change User Status" << endl;
+		cout << "4.Delete User" << endl;
+		cout << "5.Add Admin" << endl;
+		cout << "6.Print Admins" << endl;
+		cout << "7.Delete Admin" << endl;
+		cout << "8.Log out" << endl;
 		cout << "0.Exit" << endl;
 
 		cin >> choice;
-		string event;
-		string day;
 
+		string username;
+		string password;
+		int access_level;
+
+		int buffer;
 
 		switch (choice)
 		{
 		case 1:
 			system("cls");
-			print_events();
+			print_users();
 			break;
 		case 2:
-			cout << "Enter day: ";
-			cin >> day;
-			system("cls");
-			print_events_by_day(day);
+			cout << "Add new user: " << endl;
+			cout << "Enter username: ";
+			cin >> username;
+			cout << "Enter password: ";
+			cin >> password;
+			add_user(username, password);
+			cout << "User was added!!" << endl;
 			break;
 		case 3:
-			system("cls");
-			cout << "Enter event for search: ";
-			cin >> event;
-			print_events_by_event_name(event);
+			cout << "Enter username to change level access: ";
+			cin >> username;
+			cout << "Set new level access(admin: 1, user: 0):" << endl;
+			cin >> access_level;
+			change_access_level(access_level, username);
 			break;
 		case 4:
+			cout << "Delete User:" << endl;
+			cout << "Eneter username: ";
+			// add current_user == username validation
+			cin >> username;
+			delete_user(username);
+			break;
+		case 5:
+			cout << "Add new admin: " << endl;
+			cout << "Enter username: ";
+			cin >> username;
+			cout << "Enter password: ";
+			cin >> password;
+			add_admin(username, password);
+			cout << "Admin was added!!" << endl;
+			break;
+		case 6:
+			cout << "Print Admins: " << endl;
+			print_admins();
+			break;
+		case 7:
+			cout << "Delete Admin: " << endl;
+			cout << "Eneter username: ";
+			// add current_user == username validation
+			cin >> username;
+			delete_admin(username);
+			break;
+		case 8:
 			delete this->user;
 			delete this->event_collection;
 			system("cls");

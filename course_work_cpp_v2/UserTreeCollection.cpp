@@ -10,6 +10,19 @@ void UserTreeCollection::print_(Node* curr)
 		cout << "is admin: " << curr->data->is_admin() << endl;
 	}
 }
+void UserTreeCollection::print_admins_(Node* curr)
+{
+	if (curr)
+	{
+		print_admins_(curr->left);
+		print_admins_(curr->right);
+		if (curr->data->is_admin())
+		{
+			cout << "username: " << curr->data->get_username() << endl;
+			cout << "is admin: " << curr->data->is_admin() << endl;
+		}
+	}
+}
 void UserTreeCollection::delete_tree(Node* curr)
 {
 	if (curr)	
@@ -59,9 +72,32 @@ void UserTreeCollection::insert(User* user)
 	}
 	size++;
 }
+User* UserTreeCollection::find(string username) {
+
+	Node* curr = this->root;
+	User* result = nullptr;
+	while (curr)
+	{
+		if (curr->data->get_username() == username)
+		{
+			result = curr->data;
+			return result;
+		}
+		if (curr->data->get_username() > username)
+			curr = curr->left;
+		else
+			curr = curr->right;
+	}
+	return result;
+}
 void UserTreeCollection::print()
 {
 	print_(this->root);
+	cout << endl;
+}
+void UserTreeCollection::print_admins()
+{
+	print_admins_(this->root);
 	cout << endl;
 }
 void UserTreeCollection::remove(string username)

@@ -21,26 +21,6 @@ public:
 	{
 		this->day = day;
 	}
-	Event(list<string> list)
-	{
-		if (list.size() != fields_count) cout << "Error in Task constructor: not " << 
-			fields_count << " tokens are given" << endl;
-		else
-		{
-			// переделай
-			
-			this->day = list.front();
-			list.pop_front();
-			this->time = list.front();
-			list.pop_front();
-			this->event_name = list.front();
-			list.pop_front();
-			this->name = list.front();
-			list.pop_front();
-			this->number = list.front();
-			list.pop_front();
-		}
-	}
 	Event(string day, string time,
 		string event_name, string name, string number)
 	{

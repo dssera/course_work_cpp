@@ -3,7 +3,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <list>
 
 #include "Constants.h"
 #include "User.h"
@@ -13,11 +12,9 @@ using namespace std;
 
 class BaseDataBase
 {
-protected:
-public:
+private:
 	string filename;
-
-
+public:
 	BaseDataBase(string filename)
 	{
 		this->filename = filename;
@@ -26,6 +23,10 @@ public:
 	string get_filename()
 	{
 		return this->filename;
+	}
+	void set_filename(string filename)
+	{
+		this->filename = filename;
 	}
 
 	string read_file()
@@ -47,22 +48,23 @@ public:
 		return file_contents;
 	}
 
-	list<string> tokenize_string(string line, char token)
+	string* tokenize_string(string line, char token)
 	{
 		// read about stringstream
-		list<string> tokens;
-		
+		int size = 5;
+		string* tokens = new string[size];
+
 		stringstream ss(line);
 		string item;
 
 		ss.clear();
 		ss.seekg(0, ios::beg);
 
-		while (getline(ss, item, token)) 
+		for (size_t i = 0; i < size; i++)
 		{
-			tokens.push_back(item);
+			getline(ss, item, token);
+			tokens[i] = item;
 		}
-
 		return tokens;
 	}
 };
@@ -70,50 +72,54 @@ public:
 class UserDataBase : public BaseDataBase
 {
 private:
-	const int username_index = 1;
-	const int password_index = 2;
-	const int access_level_index = 3;
+	const int username_index = 0;
+	const int password_index = 1;
+	const int access_level_index = 2;
 
 public:
 	UserDataBase(string filename) : BaseDataBase(filename) {}
 
-	list<string> get_usernames()
+	string** get_usernames()
 	{
-		// Если в файлике написан бред то приложение крашится
-		ifstream file(this->filename);
+		ifstream file(this->get_filename());
 		if (!file.is_open()) {
-			cout << "Error opening file: " << this->filename << endl;
+			cout << "Error opening file: " << this->get_filename() << endl;
 			throw exception();
 		}
-		list<string> usernames;
-		// list<string> file_lines;
+
+		string** usernames = nullptr;
+		int length = 0;
 
 		string line;
-		while (getline(file, line)) 
+		while (getline(file, line))
 		{
-			//file_lines.push_back(line);
-			list<string> tokens = tokenize_string(line, ';');
-			string username;
-			int i = 0;
-			for (auto iter = tokens.begin(); i < username_index; iter++)
+			string* tokens = tokenize_string(line, ';');
+			string username = tokens[username_index];
+
+			string** temp = new string * [length + 2]; // Увеличиваем размер на 2 для добавления nullptr
+			for (int i = 0; i < length; i++)
 			{
-				if (i++ == username_index - 1)
-				{
-					username = *iter;
-					usernames.push_back(username);
-				}
+				temp[i] = usernames[i];
 			}
+			temp[length] = new string(username);
+			temp[length + 1] = nullptr; // Добавляем nullptr в конец массива
+
+			delete[] usernames;
+			usernames = temp;
+			// cout << *usernames[length]<< usernames[length] << endl;
+			length++;
 		}
 
 		file.close();
 
 		return usernames;
 	}
+
 	string get_password(string username)
 	{
-		ifstream file(this->filename);
+		ifstream file(this->get_filename());
 		if (!file.is_open()) {
-			cout << "Error opening file: " << this->filename << endl;
+			cout << "Error opening file: " << this->get_filename() << endl;
 			throw exception();
 		}
 		string password = NO_MATCH;
@@ -122,18 +128,10 @@ public:
 		string line;
 		while (getline(file, line))
 		{
-			//file_lines.push_back(line);
-			list<string> tokens = tokenize_string(line, ';');
-			int i = 0;
-			if (tokens.front() == username)
+			string* tokens = tokenize_string(line, ';');
+			if (username == tokens[username_index])
 			{
-				for (auto iter = tokens.begin(); i < password_index; iter++)
-				{
-					if (i++ == password_index - 1)
-					{
-						password = *iter;
-					}
-				}
+				return tokens[password_index];
 			}
 		}
 
@@ -141,42 +139,6 @@ public:
 
 		return password;
 	}
-	list<string> get_passwords()
-	{
-		// Если в файлике написан бред то приложение крашится
-		ifstream file(this->filename);
-		if (!file.is_open()) {
-			cout << "Error opening file: " << this->filename << endl;
-			throw exception();
-		}
-		list<string> passwords;
-		// list<string> file_lines;
-
-		string line;
-		while (getline(file, line))
-		{
-			//file_lines.push_back(line);
-			list<string> tokens = tokenize_string(line, ';');
-			string password;
-			int i = 0;
-			for (auto iter = tokens.begin(); i < password_index; iter++)
-			{
-				if (i++ == password_index - 1)
-				{
-					password = *iter;
-					passwords.push_back(password);
-				}
-			}
-		}
-
-		file.close();
-
-		return passwords;
-	}
-
-	
-
-
 	bool add_user(string username, string password)
 	{
 		// u can make "bool add_line() func which add any data
@@ -187,9 +149,9 @@ public:
 		// + one optional parameter bool is_admin
 
 		ofstream file;
-		file.open(this->filename, ios::app);
+		file.open(this->get_filename(), ios::app);
 		if (!file.is_open()) {
-			cout << "Error opening file: " << this->filename << endl;
+			cout << "Error opening file: " << this->get_filename() << endl;
 			return false;
 		}
 		file << '\n' << username << ';' << password << ';' << "0";
@@ -200,33 +162,21 @@ public:
 
 	int get_access_level(string username)
 	{
-		ifstream file(this->filename);
+		ifstream file(this->get_filename());
 		if (!file.is_open()) {
-			cout << "Error opening file: " << this->filename << endl;
+			cout << "Error opening file: " << this->get_filename() << endl;
 			throw exception();
 		}
-		int access_level = 0;
-		// list<string> file_lines;
 
+		int access_level = 0;
 		string line;
+
 		while (getline(file, line))
 		{
-			//file_lines.push_back(line);
-			list<string> tokens = tokenize_string(line, ';');
-			int i = 0;
-			bool user_is_found = 0;
-			for (string token : tokens)
+			string* tokens = tokenize_string(line, ';');
+			if (username == tokens[username_index])
 			{
-				if (i == 0 && token == username)
-				{
-					user_is_found = 1;
-					break;
-				}
-				i++;
-			}
-			if (user_is_found)
-			{
-				access_level = atoi(tokens.back().c_str());
+				return stoi(tokens[access_level_index]);
 			}
 		}
 		file.close();
@@ -234,97 +184,70 @@ public:
 	}
 };
 
-
-
-class TaskDataBase : BaseDataBase
+class EventDataBase : BaseDataBase
 {
 	// this class will work with collection
-public:
-	TaskDataBase(string filename, string username) : BaseDataBase(filename)
-	{
-		this->filename = username + '_' + filename;
+	const int day_index = 0;
+	const int time_index = 1;
+	const int event_name_index = 2;
+	const int name_index = 3;
+	const int number_index = 4;
 
-		ifstream i_file(this->filename);
+public:
+	EventDataBase(string filename, string username) : BaseDataBase(filename)
+	{
+		this->set_filename(username + '_' + filename);
+
+		ifstream i_file(this->get_filename());
 		if (!i_file.is_open())
 		{
-			ofstream file(this->filename);
+			ofstream file(this->get_filename());
 			file.close();
 		}
 		i_file.close();
 	}
 
-	list<Event*> get_tasks()
+	int get_event_count()
 	{
-		ifstream file(this->filename);
+		ifstream file(this->get_filename());
 		if (!file.is_open()) {
-			cout << "Error opening file: " << this->filename << endl;
+			cout << "Error opening file: " << this->get_filename() << endl;
 			throw exception();
 		}
-		list<Event*> tasks;
-		// list<string> file_lines;
-
+		int count = 0;
 		string line;
 		while (getline(file, line))
 		{
-			list<string> tokens = tokenize_string(line, ';');
-			Event* task = new Event(tokens);
-			tasks.push_back(task);
+			count++;
 		}
-
-		file.close();
-
-		return tasks;
-
+		return count;
 	}
-
-	/*string search_by_criteria(string data,
-		bool (*criteria)(string, string),
-		int index,
-		string pattern)
+	Event* get_tasks()
 	{
-		
-		* int const phone_field_index = index;
-		int startPos = 0;
-		int endPos = 0;
-		string match = NO_MATCH;
+		ifstream file(this->get_filename());
+		if (!file.is_open()) {
+			cout << "Error opening file: " << this->get_filename() << endl;
+			throw exception();
+		}
+		Event* events = new Event[get_event_count()];
+		// list<string> file_lines;
 
-		while ((endPos = data.find('\n', startPos)) != std::string::npos)
+		string line;
+		int i = 0;
+		while (getline(file, line))
 		{
-			std::string line = data.substr(startPos, endPos - startPos);
-			string* fields = tokenize(line);
+			string* tokens = tokenize_string(line, ';');
+			events[i].set_day(tokens[day_index]);
+			events[i].set_time(tokens[time_index]);
+			events[i].set_event_name(tokens[event_name_index]);
+			events[i].set_name(tokens[name_index]);
+			events[i].set_number(tokens[number_index]);
+			i++;
 
-			if (criteria(fields[index], pattern))
-			{
-				match = line;
-				return csv_to_verbose(match);
-			}
-			startPos = endPos + 1;
 		}
-		return match;
-		
-
-		return "";
+		file.close();
+		return events;
 	}
-	bool criteria_by_phone(string field, string phone_number)
-	{
-		if (phone_number == field) return true;
-		else return false;
-	}
-
-	bool criteria_by_event(string field, string event)
-	{
-		if (field.find(event) != string::npos) return true;
-		else return false;
-	}*/
 
 
 };
-//DataBase::DataBase(string filename)
-//{
-//	this->filename = filename;
-//}
-//
-//string DataBase::get_filename()
-//{
-//	return this->filename;
-//}

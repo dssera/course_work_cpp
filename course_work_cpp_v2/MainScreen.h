@@ -5,7 +5,7 @@
 class MainScreen
 {
 private:
-	TreeCollection* collection;
+	EventTreeCollection* collection;
 	User* user;
 	// buffer field
 

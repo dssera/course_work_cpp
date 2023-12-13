@@ -1,6 +1,6 @@
 ﻿#include "Container.h"
 
-void TreeCollection::delete_tree(Node* curr)
+void EventTreeCollection::delete_tree(Node* curr)
 {
 	if (curr)
 	{
@@ -10,43 +10,41 @@ void TreeCollection::delete_tree(Node* curr)
 	}
 }
 
-void TreeCollection::print_tree(Node* curr)
+void EventTreeCollection::print_(Node* curr)
 {
 	if (curr)
 	{
-		print_tree(curr->left);
+		print_(curr->left);
 		cout << "day:" << curr->data->get_day() << endl;
 		cout << "event_name: " << curr->data->get_event_name() << endl;
-		print_tree(curr->right);
+		print_(curr->right);
 	}
 }
-void TreeCollection::print_tree_by_day(Node* curr, string day)
+void EventTreeCollection::print_by_day_(Node* curr, string day)
 {
 	if (curr)
 	{
-		print_tree_by_day(curr->left, day);
+		print_by_day_(curr->left, day);
 		if (curr->data->get_day() == day)
 		{
 			cout << "day:" << curr->data->get_day() << endl;
 			cout << "event_name: " << curr->data->get_event_name() << endl;
 		}
-		print_tree_by_day(curr->right, day);
+		print_by_day_(curr->right, day);
 	}
 }
 
-void TreeCollection::fill_tree()
+void EventTreeCollection::fill_tree()
 {
-	list<Event*> tasks = this->db->get_tasks();
+	Event* events = this->db->get_tasks();
 
-	auto it = tasks.begin();
-	while (it != tasks.end())
+	for (int i = 0; i < this->db->get_event_count(); i++)
 	{
-		insert(*it);
-		it = tasks.erase(it);
+		insert(&events[i]);
 	}
 }
 
-int TreeCollection::get_index(string day)
+int EventTreeCollection::get_index(string day)
 {
 	for (int i = 0; i < days->length(); i++)
 	{
@@ -55,13 +53,13 @@ int TreeCollection::get_index(string day)
 	return 0;
 }
 
-void TreeCollection::find_by_event_name(string event_name)
+void EventTreeCollection::find_by_event_name(string event_name)
 {
 	Node* curr = this->root;
 	find_by_event_name_(curr, event_name);
 	cout << endl;
 }
-void TreeCollection::find_by_event_name_(Node* curr, string event_name)
+void EventTreeCollection::find_by_event_name_(Node* curr, string event_name)
 {
 	// можно было бы возвращать указатель на найденный объект НО
 	// как делать это в рекурсии?? пока что заменю на простой вывод
@@ -80,7 +78,7 @@ void TreeCollection::find_by_event_name_(Node* curr, string event_name)
 }
 
 
-void TreeCollection::insert(Event* task)
+void EventTreeCollection::insert(Event* task)
 {
 	Node* curr = new Node(task);
 
@@ -110,19 +108,19 @@ void TreeCollection::insert(Event* task)
 	size++;
 }
 
-void TreeCollection::print()
+void EventTreeCollection::print()
 {
-	print_tree(this->root);
+	print_(this->root);
 	cout << endl;
 }
-void TreeCollection::print_by_day(string day)
+void EventTreeCollection::print_by_day(string day)
 {
-	print_tree_by_day(this->root, day);
+	print_by_day_(this->root, day);
 	cout << endl;
 }
 
 
-void TreeCollection::remove(string day)
+void EventTreeCollection::remove(string day)
 {
 	Node* curr = this->root;
 	Node* parent = nullptr;
@@ -199,11 +197,7 @@ void TreeCollection::remove(string day)
 	curr->data = replace_value;
 }
 // delete and create method with tree traversal and if statement
-list<Event*> TreeCollection::get_tasks()
-{
-	return db->get_tasks();
-}
-void TreeCollection::delete_by_id_(Node* parent, Node* curr, string event_name)
+void EventTreeCollection::delete_by_id_(Node* parent, Node* curr, string event_name)
 {
 	if (curr)
 	{
@@ -309,16 +303,16 @@ void TreeCollection::delete_by_id_(Node* parent, Node* curr, string event_name)
 	}
 }
 
-void TreeCollection::delete_by_event_name(string event_name)
+void EventTreeCollection::delete_by_event_name(string event_name)
 {
 	delete_by_id_(nullptr, root, event_name);
 }
 
-Event* TreeCollection::get_by_event_name(string event_name)
+Event* EventTreeCollection::get_by_event_name(string event_name)
 {
 	return get_by_event_name_(this->root, event_name);
 }
-Event* TreeCollection::get_by_event_name_(Node* curr, string event_name)
+Event* EventTreeCollection::get_by_event_name_(Node* curr, string event_name)
 {
 	if (curr)
 	{

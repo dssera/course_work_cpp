@@ -5,11 +5,19 @@
 
 string Auth::identificate(string username)
 {
-	list<string> usernames = this->db->get_usernames();
+	string** usernames = this->db->get_usernames();
 
-	for (string username_ : usernames)
+	/*for (string username_ : usernames)
 	{
 		if (username == username_)
+		{
+			return username;
+		}
+	}*/
+	int i = 0;
+	while (usernames[i] != nullptr)
+	{
+		if (username == *usernames[i++])
 		{
 			return username;
 		}
@@ -34,8 +42,7 @@ User* Auth::auth(string username, string password)
 	SHA256 sha256;
 	if (sha256(password) == password_from_db)
 	{
-		int access_level = this->db->get_access_level(username);
-		user = new User(username, password, access_level);
+		user = new User(username, password, this->db->get_access_level(username));
 
 	}
 	if (user == nullptr)

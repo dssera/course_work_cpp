@@ -138,6 +138,7 @@
     <ClCompile Include="MainScreen.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="UserTreeCollection.cpp" />
     <ClCompile Include="user_logic.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +150,7 @@
     <ClInclude Include="MainScreen.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="User.h" />
+    <ClInclude Include="UserTreeCollection.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

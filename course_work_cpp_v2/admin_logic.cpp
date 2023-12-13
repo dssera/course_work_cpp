@@ -3,13 +3,13 @@
 // create
 void MainScreen::add_user(string username, string password)
 {
-
+	// insert method 
 }
 
 // read
 void MainScreen::print_users()
 {
-
+	// print method
 }
 
 // update
@@ -30,7 +30,7 @@ void MainScreen::change_user_status()
 // delete
 void MainScreen::delete_user(string username)
 {
-
+	// delete by username
 }
 
 

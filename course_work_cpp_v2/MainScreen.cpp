@@ -8,7 +8,7 @@ void MainScreen::run()
 	{
 		Auth* auth = new Auth(new UserDataBase("auth.txt"));
 		User* user = auth->run_auth_menu();
-		TreeCollection* collection = new TreeCollection(user->get_username());
+		EventTreeCollection* collection = new EventTreeCollection(user->get_username());
 
 		// is it okey??
 		this->collection = collection;

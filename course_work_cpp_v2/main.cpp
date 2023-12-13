@@ -55,9 +55,10 @@ PLaaan::
 */
 
 #include "Auth.h"
-#include "db.cpp"
+#include "db.h"
 #include "Container.h"
 #include "MainScreen.h"
+#include <iterator>
 
 //void task_for_lab()
 //{
@@ -86,15 +87,60 @@ PLaaan::
 //	cout << "count: " << count << endl;
 //}
 
+string* tokenize_string(string line, char token)
+{
+	// read about stringstream
+	int size = 5;
+	string* tokens = new string[size];
 
+	stringstream ss(line);
+	string item;
+
+	ss.clear();
+	ss.seekg(0, ios::beg);
+
+
+	for (size_t i = 0; i < size; i++)
+	{
+		getline(ss, item, token);
+		tokens[i] = item;
+	}
+	return tokens;
+}
 int main()
 {
 	// add user_logic.cpp and amdin_logic.cpp
 
 	MainScreen* main_screen = new MainScreen();
 	main_screen->run();
+	/*TaskDataBase db("task_db.txt", "user");
+	Event* events = db.get_tasks();
 	
+	for (size_t i = 0; i < db.get_event_count(); i++)
+	{
+		cout << events[i].get_day() << endl << events[i].get_event_name() << endl;
+		system("pause");
+	}*/
 
+	/*string* arr = tokenize_string("123;123;124;34tgfd;34", ';');
+	string* usernames = db.get_usernames();
+	cout << usernames[0] << endl;*/
+	// to iterate via this array u can add std::npos to the end
+	/*for (size_t i = 0; i < 5; i++)
+	{
+		cout << arr[i] << endl;
+	}*/
+	//UserDataBase db("auth.txt");
+
+	//std::string** arr = db.get_usernames(); // получение массива строк
+	//cout << endl;
+	//int i = 0;
+	//while (arr[i] != nullptr)
+	//{
+	//	cout << *arr[i]<< arr[i]->size() << endl;
+	//	i++;
+	//}
+    return 0;
 }
 
 

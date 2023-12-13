@@ -29,12 +29,12 @@ private:
 	void fill_tree();
 
 public:
-	UserTreeCollection()
+	UserTreeCollection(UserDataBase* db)
 	{
 		this->root = nullptr;
 		this->size = 0;
 
-		this->db = new UserDataBase("user_db.txt");
+		this->db = db;
 		fill_tree();
 	}
 	~UserTreeCollection()

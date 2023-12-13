@@ -182,6 +182,44 @@ public:
 		file.close();
 		return access_level;
 	}
+	int get_user_count()
+	{
+		ifstream file(this->get_filename());
+		if (!file.is_open()) {
+			cout << "Error opening file: " << this->get_filename() << endl;
+			throw exception();
+		}
+		string line;
+		int count = 0;
+		while (getline(file, line))
+		{
+			count++;
+		}
+		return count;
+	}
+	User* get_users()
+	{
+		ifstream file(this->get_filename());
+		if (!file.is_open()) {
+			cout << "Error opening file: " << this->get_filename() << endl;
+			throw exception();
+		}
+		User* users = new User[get_user_count()];
+
+		string line;
+		int i = 0;
+		while (getline(file, line))
+		{
+			string* tokens = tokenize_string(line, ';');
+			users[i].set_username(tokens[username_index]);
+			users[i].set_password(tokens[password_index]);
+			users[i].set_access_level(stoi(tokens[access_level_index]));
+			cout << "username: "<< users[i].get_username() << endl;
+			i++;
+		}
+		file.close();
+		return users;
+	}
 };
 
 class EventDataBase : BaseDataBase

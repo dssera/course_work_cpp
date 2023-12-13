@@ -3,7 +3,7 @@
 // create
 void MainScreen::add_user(string username, string password)
 {
-	// insert method 
+	
 }
 
 // read

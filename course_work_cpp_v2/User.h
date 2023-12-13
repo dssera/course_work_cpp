@@ -12,13 +12,31 @@ protected:
 	string password;
 	int _is_admin;
 public:
-	bool is_admin()
-	{
-		return this->_is_admin;
-	}
+	BaseUser() {}
+	
 	string get_username()
 	{
 		return this->username;
+	}
+	void set_username(string username)
+	{
+		this->username = username;
+	}
+	string get_password()
+	{
+		return this->password;
+	}
+	void set_password(string password)
+	{
+		this->password = password;
+	}
+	int is_admin()
+	{
+		return this->_is_admin;
+	}
+	void set_access_level(int access_level)
+	{
+		this->_is_admin = access_level;
 	}
 };
 
@@ -26,6 +44,7 @@ class User : public BaseUser
 {
 public:
 	User(string username, string password, int _is_admin=0);
+	User() {}
 };
 
 

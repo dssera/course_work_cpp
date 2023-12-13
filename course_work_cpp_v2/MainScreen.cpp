@@ -6,12 +6,16 @@ void MainScreen::run()
 {
 	do
 	{
-		Auth* auth = new Auth(new UserDataBase("auth.txt"));
+		UserDataBase* user_db = new UserDataBase("auth.txt");
+		Auth* auth = new Auth(user_db);
 		User* user = auth->run_auth_menu();
-		EventTreeCollection* collection = new EventTreeCollection(user->get_username());
+
+		UserTreeCollection* user_collection = new UserTreeCollection(user_db);
+		EventTreeCollection* event_collection = new EventTreeCollection(user->get_username());
 
 		// is it okey??
-		this->collection = collection;
+		this->user_collection = user_collection;
+		this->event_collection = event_collection;
 		this->user = user;
 
 		if (user->is_admin()) admin_screen();
@@ -111,7 +115,7 @@ void MainScreen::user_screen()
 				break;
 			case 7:
 				delete this->user;
-				delete this->collection;
+				delete this->event_collection;
 				system("cls");
 				return;
 			case 0:
@@ -161,7 +165,7 @@ void MainScreen::admin_screen()
 			break;
 		case 4:
 			delete this->user;
-			delete this->collection;
+			delete this->event_collection;
 			system("cls");
 			return;
 		case 0:

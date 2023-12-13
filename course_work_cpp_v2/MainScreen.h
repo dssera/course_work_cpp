@@ -1,11 +1,13 @@
 ﻿#pragma once
 #include "User.h"
 #include "Container.h"
+#include "UserTreeCollection.h"
 
 class MainScreen
 {
 private:
-	EventTreeCollection* collection;
+	EventTreeCollection* event_collection;
+	UserTreeCollection* user_collection;
 	User* user;
 	// buffer field
 

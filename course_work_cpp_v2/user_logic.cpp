@@ -6,29 +6,29 @@ void MainScreen::add_event(string day, string time,
 {
 	Event* event_obj = new Event(day, time, event, name, number);
 
-	collection->insert(event_obj);
+	event_collection->insert(event_obj);
 }
 
 // read
 void MainScreen::print_events()
 {
-	collection->print(); 
+	event_collection->print(); 
 }
 
 void MainScreen::print_events_by_day(string day)
 {
-	collection->print_by_day(day);
+	event_collection->print_by_day(day);
 }
 
 void MainScreen::print_events_by_event_name(string event_name)
 {
-	this->collection->find_by_event_name(event_name);
+	this->event_collection->find_by_event_name(event_name);
 }
 
 // update
 void MainScreen::change_event(string event_name, int choice)
 {
-	Event* event = collection->get_by_event_name(event_name);
+	Event* event = event_collection->get_by_event_name(event_name);
 	event->print();
 	system("pause");
 	string new_data;
@@ -59,5 +59,5 @@ void MainScreen::change_event(string event_name, int choice)
 // delete
 void MainScreen::delete_event(string event_name)
 {
-	this->collection->delete_by_event_name(event_name);
+	this->event_collection->delete_by_event_name(event_name);
 }

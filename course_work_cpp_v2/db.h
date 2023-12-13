@@ -222,7 +222,7 @@ public:
 	}
 };
 
-class EventDataBase : BaseDataBase
+class EventDataBase : public BaseDataBase
 {
 	// this class will work with collection
 	const int day_index = 0;

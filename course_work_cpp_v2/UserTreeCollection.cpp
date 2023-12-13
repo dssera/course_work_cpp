@@ -176,3 +176,21 @@ void UserTreeCollection::remove(string username)
 	remove(replace_value->get_username());
 	curr->data = replace_value;
 }
+
+void UserTreeCollection::save_in_file()
+{
+	ofstream file(this->db->get_filename(), ofstream::trunc);
+	save_in_file_(this->root, file);
+	file.close();
+}
+void UserTreeCollection::save_in_file_(Node* curr, ofstream& file)
+{
+	if (curr)
+	{
+		save_in_file_(curr->left, file);
+		save_in_file_(curr->right, file);
+		file << curr->data->get_username() << ";"
+			<< curr->data->get_password() << ";"
+			<< curr->data->is_admin() << endl;
+	}
+}

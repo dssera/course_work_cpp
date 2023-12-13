@@ -333,3 +333,22 @@ Event* EventTreeCollection::get_by_event_name_(Node* curr, string event_name)
 	}
 	return nullptr;
 }
+void EventTreeCollection::save_in_file()
+{
+	ofstream file(this->db->get_filename(), ofstream::trunc);
+	save_in_file_(this->root, file);
+	file.close();
+}
+void EventTreeCollection::save_in_file_(Node* curr, ofstream& file)
+{
+	if (curr)
+	{
+		save_in_file_(curr->left, file);
+		save_in_file_(curr->right, file);
+		file << curr->data->get_day() << ";"
+			<< curr->data->get_time() << ";"
+			<< curr->data->get_event_name() << ";"
+			<< curr->data->get_name() << ";" 
+			<< curr->data->get_number() << ";" << endl;
+	}
+}

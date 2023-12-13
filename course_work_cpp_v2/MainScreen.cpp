@@ -203,6 +203,7 @@ void MainScreen::admin_screen()
 		case 8:
 			delete this->user;
 			delete this->event_collection;
+			delete this->user_collection;
 			system("cls");
 			return;
 		case 0:

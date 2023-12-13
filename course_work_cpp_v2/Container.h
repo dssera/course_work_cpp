@@ -35,8 +35,11 @@ private:
 	void delete_by_id_(Node* parent, Node* curr, string event_name);
 
 	void fill_tree();
+	// void save_in_file();
 
 	int get_index(string day);
+
+
 public:
 	EventTreeCollection(string username)
 	{
@@ -58,5 +61,7 @@ public:
 	void print_by_day(string day);
 	void remove(string day);
 	void delete_by_event_name(string event_name);
+	void save_in_file();
+	void save_in_file_(Node* curr, ofstream& file);
 };
 

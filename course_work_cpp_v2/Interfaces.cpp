@@ -1,5 +1,4 @@
 ﻿#include "Auth.h"
-#include "Tools.h"
 
 User* Auth::run_auth_menu()
 {
@@ -9,16 +8,12 @@ User* Auth::run_auth_menu()
 	{
 		int enter;
 		string username, password;
-		SHA256 sha256;
-
 
 		cout << "Auth Menu" << endl << "1.Sign In" << endl
 			<< "2.Sign Up" << endl << "0.Exit" << endl;
 
 
 		cout << "Your enter: ";
-		// cin >> enter;
-		// cin.ignore();
 		enter = Tools::input_int();
 		cin.ignore();
 		switch (enter)
@@ -38,26 +33,14 @@ User* Auth::run_auth_menu()
 			cout << "Create a new user:" << endl;
 			cout << "Enter username" << endl;
 			username = Tools::input_str();
-			if (username == NO_MATCH)
-			{
-				cout << "Entered name is reserved!!" << endl;
-				break;
-			}
 			cout << "Enter paswword" << endl;
 			password = enter_password();
-			cout <<"Entered password: "<< password << endl;
 			
-			password = sha256(password);
+			user = register_user(username, password);
+			if (!user) break;
+			
+			// вынести регистрацию в отдельный файл?
 
-			if (db->add_user(username, password))
-			{
-				cout << "User was added!!" << endl;
-				user = new User(username, password);
-			}
-			// вынести регистрацию в отдельный файл
-
-			//add user in db or raise an error
-			//and then retutn pointer on gotten user
 			break;
 		case(0):
 			system("pause");

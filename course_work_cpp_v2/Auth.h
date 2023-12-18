@@ -38,5 +38,7 @@ public:
 protected:
 	string identificate(string username);
 	User* auth(string username, string password);
+	User* register_user(string username, string password);
+
 	
 };

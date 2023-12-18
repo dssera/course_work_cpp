@@ -7,6 +7,8 @@ void MainScreen::add_event(string day, string time,
 	Event* event_obj = new Event(day, time, event, name, number);
 
 	event_collection->insert(event_obj);
+
+	save_events();
 }
 
 // read
@@ -33,7 +35,9 @@ void MainScreen::change_event(string event_name, int choice)
 	system("pause");
 	string new_data;
 	cout << "Enter new value for field: ";
-	cin >> new_data;
+	new_data = Tools::input_str();
+	// cin >> new_data;
+
 	switch (choice)
 	{
 	case 1:
@@ -54,10 +58,12 @@ void MainScreen::change_event(string event_name, int choice)
 	default:
 		break;
 	}
+	save_events();
 }
 
 // delete
 void MainScreen::delete_event(string event_name)
 {
 	this->event_collection->delete_by_event_name(event_name);
+	save_events();
 }

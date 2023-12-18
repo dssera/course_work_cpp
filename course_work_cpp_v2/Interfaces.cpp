@@ -3,7 +3,6 @@
 User* Auth::run_auth_menu()
 {
 	User* user = nullptr;
-
 	do
 	{
 		int enter;
@@ -12,10 +11,8 @@ User* Auth::run_auth_menu()
 		cout << "Auth Menu" << endl << "1.Sign In" << endl
 			<< "2.Sign Up" << endl << "0.Exit" << endl;
 
-
 		cout << "Your enter: ";
 		enter = Tools::input_int();
-		cin.ignore();
 		switch (enter)
 		{
 		case(1):
@@ -38,9 +35,6 @@ User* Auth::run_auth_menu()
 			
 			user = register_user(username, password);
 			if (!user) break;
-			
-			// вынести регистрацию в отдельный файл?
-
 			break;
 		case(0):
 			system("pause");

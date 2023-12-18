@@ -12,6 +12,7 @@ namespace Tools
         int value;
         while (true) {
             cin >> input;
+            cin.ignore();
 
             try {
                 value = stoi(input);

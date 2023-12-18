@@ -28,9 +28,6 @@ private:
 	void delete_tree(Node* curr);
 
 	void fill_tree();
-	void save_in_file();
-	void save_in_file_(Node* curr, ofstream& file);
-
 public:
 	UserTreeCollection(UserDataBase* db)
 	{
@@ -51,6 +48,8 @@ public:
 	void print_admins();
 	User* find(string username);
 	void remove(string username);
+	void save_in_file();
+	void save_in_file_(Node* curr, ofstream& file);
 
 };
 

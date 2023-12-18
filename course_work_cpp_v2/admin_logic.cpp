@@ -5,6 +5,7 @@ void MainScreen::add_user(string username, string password)
 {
 	User* user = new User(username, password);
 	this->user_collection->insert(user);
+	save_users();
 }
 
 // read
@@ -27,18 +28,21 @@ void MainScreen::change_access_level(int access_level, string username)
 		if (user->is_admin() == 0) cout << "This user is already not an admin" << endl;
 		else user->set_access_level(0);
 	}
+	save_users();
 }
 
 // delete
 void MainScreen::delete_user(string username)
 {
 	this->user_collection->remove(username);
+	save_users();
 }
 
 void MainScreen::add_admin(string username, string password)
 {
 	User* user = new User(username, password, 1);
 	this->user_collection->insert(user);
+	save_users();
 }
 void MainScreen::print_admins()
 {
@@ -48,4 +52,5 @@ void MainScreen::delete_admin(string username)
 {
 	// add validations
 	this->user_collection->remove(username);
+	save_users();
 }

@@ -2,6 +2,7 @@
 #include "User.h"
 #include "Container.h"
 #include "UserTreeCollection.h"
+#include "Tools.h"
 
 class MainScreen
 {
@@ -27,7 +28,8 @@ private:
 	void change_event(string event_name, int choice);
 	void delete_event(string event_name);
 
-	void save_in_file();
+	void save_users();
+	void save_events();
 
 	// use hash_table or array to do sort in tree not by .length() but by index of day
 	// "monday" : 1, ...

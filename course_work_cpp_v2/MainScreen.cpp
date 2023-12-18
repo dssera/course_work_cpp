@@ -26,9 +26,13 @@ void MainScreen::run()
 
 
 // u did changes in collection and then save it
-void MainScreen::save_in_file()
+void MainScreen::save_users()
 {
-
+	this->user_collection->save_in_file();
+}
+void MainScreen::save_events()
+{
+	this->event_collection->save_in_file();
 }
 // отмена изменений??
 // use hash_table or array to do sort in tree not by .length() but by index of day
@@ -51,7 +55,7 @@ void MainScreen::user_screen()
 		cout << "7.Log out" << endl;
 		cout << "0.Exit" << endl;
 
-		cin >> choice;
+		choice = Tools::input_int();
 		
 		string day;
 		string time;
@@ -72,45 +76,54 @@ void MainScreen::user_screen()
 				system("cls");
 				cout << "Add Task" << endl;
 				cout << "Enter day" << endl;
-				cin >> day;
+				day = Tools::input_str();
 				cout << "Enter time" << endl;
-				cin >> time;
+				// cin >> time;
+				time = Tools::input_str();
 				cout << "Enter event" << endl;
-				cin >> event_name;
+				//cin >> event_name;
+				event_name = Tools::input_str();
 				cout << "Enter name" << endl;
-				cin >> name;
+				//cin >> name;
+				name = Tools::input_str();
 				cout << "Enter number" << endl;
-				cin >> number;
+				//cin >> number;
+				number = Tools::input_str();
 				add_event(day, time, event_name, name, number);
 				break;
 			case 3:
 				system("cls");
 				cout << "Enter which task you want to change(event name): ";
-				cin >> event_name;
+				// cin >> event_name;
+				event_name = Tools::input_str();
 				cout << "Enter field which you want to change: " << endl;
 				cout << "1.Day" << endl << "2.Time" << endl << "3.Event" << endl
 					<< "4.Name" << endl << "5.Number" << endl;
-				cin >> buffer;
+				// cin >> buffer;
+				buffer = Tools::input_int();
 				change_event(event_name, buffer);
 				// to make this possible you need to add id in each task
 				break;
 			case 4:
 				system("cls");
 				cout << "Enter event name which you want to delete: ";
-				cin >> event_name;
+				// cin >> event_name;
+				event_name = Tools::input_str();
 				delete_event(event_name);
 				// to make this possible you need to add id in each task
 				break;
 			case 5:
 				cout << "Enter day: ";
-				cin >> day;
+				//cin >> day;
+				day = Tools::input_str();
 				system("cls");
 				print_events_by_day(day);
 				break;
 			case 6:
 				system("cls");
 				cout << "Enter event for search: ";
-				cin >> event_name;
+				// cin >> event_name;
+				event_name = Tools::input_str();
 				print_events_by_event_name(event_name);
 				break;
 			case 7:
@@ -143,7 +156,7 @@ void MainScreen::admin_screen()
 		cout << "8.Log out" << endl;
 		cout << "0.Exit" << endl;
 
-		cin >> choice;
+		choice = Tools::input_int();
 
 		string username;
 		string password;
@@ -160,32 +173,39 @@ void MainScreen::admin_screen()
 		case 2:
 			cout << "Add new user: " << endl;
 			cout << "Enter username: ";
-			cin >> username;
+			// cin >> username;
+			username = Tools::input_str();
 			cout << "Enter password: ";
-			cin >> password;
+			// cin >> password;
+			password = Tools::input_str();
 			add_user(username, password);
 			cout << "User was added!!" << endl;
 			break;
 		case 3:
 			cout << "Enter username to change level access: ";
-			cin >> username;
+			//cin >> username;
+			username = Tools::input_str();
 			cout << "Set new level access(admin: 1, user: 0):" << endl;
-			cin >> access_level;
+			// cin >> access_level;
+			access_level = Tools::input_int();
 			change_access_level(access_level, username);
 			break;
 		case 4:
 			cout << "Delete User:" << endl;
 			cout << "Eneter username: ";
 			// add current_user == username validation
-			cin >> username;
+			//cin >> username;
+			username = Tools::input_str();
 			delete_user(username);
 			break;
 		case 5:
 			cout << "Add new admin: " << endl;
 			cout << "Enter username: ";
-			cin >> username;
+			// cin >> username;
+			username = Tools::input_str();
 			cout << "Enter password: ";
-			cin >> password;
+			//cin >> password;
+			password = Tools::input_str();
 			add_admin(username, password);
 			cout << "Admin was added!!" << endl;
 			break;
@@ -197,8 +217,11 @@ void MainScreen::admin_screen()
 			cout << "Delete Admin: " << endl;
 			cout << "Eneter username: ";
 			// add current_user == username validation
-			cin >> username;
+			
+			//cin >> username;
+			username = Tools::input_str();
 			delete_admin(username);
+			
 			break;
 		case 8:
 			delete this->user;

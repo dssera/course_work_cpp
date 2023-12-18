@@ -1,8 +1,5 @@
 ﻿#include "Auth.h"
 
-// delete sign_up and sign_in - they're a part of interface auth_menu()
-
-
 string Auth::identificate(string username)
 {
 	string** usernames = this->db->get_usernames();

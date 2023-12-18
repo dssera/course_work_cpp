@@ -1,5 +1,5 @@
-#include "Auth.h"
-#include "User.h"
+﻿#include "Auth.h"
+#include "Tools.h"
 
 User* Auth::run_auth_menu()
 {
@@ -17,18 +17,19 @@ User* Auth::run_auth_menu()
 
 
 		cout << "Your enter: ";
-		cin >> enter;
-
+		// cin >> enter;
+		// cin.ignore();
+		enter = Tools::input_int();
+		cin.ignore();
 		switch (enter)
 		{
 		case(1):
 			cout << SIGN_IN << endl;
-			// user = sign_in();
 			cout << "Sign In: " << endl;
 			cout << "Enter username" << endl;
-			cin >> username;
+			username = Tools::input_str();
 			cout << "Enter paswword" << endl;
-			cin >> password;
+			password = Tools::input_str();
 
 			user = auth(username, password);
 			break;
@@ -36,10 +37,15 @@ User* Auth::run_auth_menu()
 			cout << SIGN_UP << endl;
 			cout << "Create a new user:" << endl;
 			cout << "Enter username" << endl;
-			cin >> username;
+			username = Tools::input_str();
+			if (username == NO_MATCH)
+			{
+				cout << "Entered name is reserved!!" << endl;
+				break;
+			}
 			cout << "Enter paswword" << endl;
-			cin >> password;
-			//password validation
+			password = enter_password();
+			cout <<"Entered password: "<< password << endl;
 			
 			password = sha256(password);
 
@@ -48,7 +54,7 @@ User* Auth::run_auth_menu()
 				cout << "User was added!!" << endl;
 				user = new User(username, password);
 			}
-
+			// вынести регистрацию в отдельный файл
 
 			//add user in db or raise an error
 			//and then retutn pointer on gotten user
@@ -58,6 +64,7 @@ User* Auth::run_auth_menu()
 			exit(0);
 			break;
 		default:
+			cout << "Wrong input!!" << endl;
 			break;
 		}
 	} while (user == nullptr);

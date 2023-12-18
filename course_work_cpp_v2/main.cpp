@@ -94,6 +94,9 @@ int main()
 
 	MainScreen* main_screen = new MainScreen();
 	main_screen->run();
+	/*string str1 = Tools::input_str();
+	string str2 = Tools::input_str();
+	cout << "str1: "<< str1 << endl <<"str2: " << str2 << endl;*/
 	
 	
 	

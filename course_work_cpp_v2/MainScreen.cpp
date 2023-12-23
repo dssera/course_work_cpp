@@ -42,7 +42,6 @@ void MainScreen::save_events()
 
 void MainScreen::user_screen()
 {
-	
 	int choice;
 	do
 	{
@@ -76,10 +75,10 @@ void MainScreen::user_screen()
 				system("cls");
 				cout << "Add Task" << endl;
 				cout << "Enter day" << endl;
-				day = Tools::input_str();
+				day = Tools::enter_day();
 				cout << "Enter time" << endl;
 				// cin >> time;
-				time = Tools::input_str();
+				time = Tools::enter_time();
 				cout << "Enter event" << endl;
 				//cin >> event_name;
 				event_name = Tools::input_str();
@@ -88,7 +87,7 @@ void MainScreen::user_screen()
 				name = Tools::input_str();
 				cout << "Enter number" << endl;
 				//cin >> number;
-				number = Tools::input_str();
+				number = Tools::enter_number();
 				add_event(day, time, event_name, name, number);
 				break;
 			case 3:
@@ -115,7 +114,7 @@ void MainScreen::user_screen()
 			case 5:
 				cout << "Enter day: ";
 				//cin >> day;
-				day = Tools::input_str();
+				day = Tools::enter_day();
 				system("cls");
 				print_events_by_day(day);
 				break;

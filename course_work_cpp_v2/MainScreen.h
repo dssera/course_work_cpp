@@ -37,9 +37,9 @@ private:
 	void print_events_by_day(string day);
 	void print_events_by_event_name(string event);
 
-
 	void user_screen();
 	void admin_screen();
+
 public:
 	MainScreen() {};
 	void run();

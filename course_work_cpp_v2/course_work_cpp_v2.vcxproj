@@ -131,7 +131,7 @@
     <ClCompile Include="..\..\..\..\cpp_libraries\hash-library\sha256.cpp" />
     <ClCompile Include="admin_logic.cpp" />
     <ClCompile Include="Auth.cpp" />
-    <ClCompile Include="Container.cpp" />
+    <ClCompile Include="EventTreeCollection.cpp" />
     <ClCompile Include="db.cpp" />
     <ClCompile Include="Interfaces.cpp" />
     <ClCompile Include="main.cpp" />
@@ -145,7 +145,7 @@
     <ClInclude Include="..\..\..\..\cpp_libraries\hash-library\sha256.h" />
     <ClInclude Include="Auth.h" />
     <ClInclude Include="Constants.h" />
-    <ClInclude Include="Container.h" />
+    <ClInclude Include="EventTreeCollection.h" />
     <ClInclude Include="db.h" />
     <ClInclude Include="MainScreen.h" />
     <ClInclude Include="Event.h" />

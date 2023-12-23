@@ -25,7 +25,7 @@ private:
 
 	void add_event(string day, string time,
 		string event, string name, string number);
-	void change_event(string event_name, int choice);
+	void change_event(Event* event);
 	void delete_event(string event_name);
 
 	void save_users();

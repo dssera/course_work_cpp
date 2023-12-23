@@ -2,9 +2,16 @@
 
 // create
 void MainScreen::add_event(string day, string time, 
-	string event, string name, string number)
+	string event_name, string name, string number)
 {
-	Event* event_obj = new Event(day, time, event, name, number);
+	Event* event_from_db = event_collection->get_by_event_name(event_name);
+	if (event_from_db)
+	{
+		cout << "You've already have event with this name" << endl;
+		system("pause");
+		return;
+	}
+	Event* event_obj = new Event(day, time, event_name, name, number);
 
 	event_collection->insert(event_obj);
 
@@ -28,35 +35,52 @@ void MainScreen::print_events_by_event_name(string event_name)
 }
 
 // update
-void MainScreen::change_event(string event_name, int choice)
+void MainScreen::change_event(Event* event)
 {
-	Event* event = event_collection->get_by_event_name(event_name);
-	event->print();
-	system("pause");
+	int choice;
 	string new_data;
-	cout << "Enter new value for field: ";
-	new_data = Tools::input_str();
-	// cin >> new_data;
-
-	switch (choice)
+	bool flag = true;
+	while (flag)
 	{
-	case 1:
-		event->set_day(new_data);
-		break;
-	case 2:
-		event->set_time(new_data);
-		break;
-	case 3:
-		event->set_event_name(new_data);
-		break;
-	case 4:
-		event->set_name(new_data);
-		break;
-	case 5:
-		event->set_number(new_data);
-		break;
-	default:
-		break;
+		cout << "Enter: ";
+		choice = Tools::input_int();
+		switch (choice)
+		{
+			case 1:
+				cout << "Enter new day: ";
+				new_data = Tools::enter_day();
+				event->set_day(new_data);
+				flag = false;
+				break;
+			case 2:
+				cout << "Enter new time: ";
+				new_data = Tools::enter_time();
+				event->set_time(new_data);
+				flag = false;
+				break;
+			case 3:
+				cout << "Enter new name: ";
+				new_data = Tools::input_str();
+				event->set_event_name(new_data);
+				flag = false;
+				break;
+			case 4:
+				cout << "Enter new event name: ";
+				new_data = Tools::input_str();
+				event->set_name(new_data);
+				flag = false;
+				break;
+			case 5:
+				cout << "Enter new number: ";
+				new_data = Tools::enter_number();
+				event->set_number(new_data);
+				flag = false;
+				break;
+			case 0:
+				return;
+			default:
+				cout << "Wrong enter!!!" << endl;
+		}
 	}
 	save_events();
 }

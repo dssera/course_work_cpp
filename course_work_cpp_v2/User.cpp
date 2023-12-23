@@ -4,6 +4,7 @@ using namespace std;
 
 BaseUser::BaseUser(string username, string password)
 {
+
 	this->username = username;
 	this->password = password;
 }

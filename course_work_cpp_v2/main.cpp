@@ -91,17 +91,9 @@ PLaaan::
 
 int main()
 {
-
-	//// day - right if in ["monday", ...]
-	//// time - right if in [hh:mm]
-	//// event_name - right 
-	//// name1 name2 - right if in [word word]
-	//// numbers - right if in [+(1:3)-23-234-234]
 	MainScreen* main_screen = new MainScreen();
 	main_screen->run();
 
-	
-	
     return 0;
 }
 

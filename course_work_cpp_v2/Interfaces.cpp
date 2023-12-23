@@ -30,12 +30,16 @@ User* Auth::run_auth_menu()
 			cout << "Create a new user:" << endl;
 			cout << "Enter username" << endl;
 			username = Tools::input_str();
+			if (username.find(" "))
+			{
+				cout << "Invalid name. You can't use spaces." << endl;
+				break;
+			}
 			cout << "Enter paswword" << endl;
 			password = enter_password();
 			
 			user = register_user(username, password);
-			if (!user) break;
-			break;
+			// add this new user in tree and in file!!!!
 		case(0):
 			system("pause");
 			exit(0);

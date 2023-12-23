@@ -56,6 +56,7 @@ void MainScreen::user_screen()
 
 		choice = Tools::input_int();
 		
+		Event* event;
 		string day;
 		string time;
 		string event_name;
@@ -74,19 +75,21 @@ void MainScreen::user_screen()
 			case 2:
 				system("cls");
 				cout << "Add Task" << endl;
+				cout << "Enter event" << endl;
+				event_name = Tools::input_str();
+				event = event_collection->get_by_event_name(event_name);
+				if (event)
+				{
+					cout << "You've already have event with this name" << endl;
+					break;
+				}
 				cout << "Enter day" << endl;
 				day = Tools::enter_day();
 				cout << "Enter time" << endl;
-				// cin >> time;
 				time = Tools::enter_time();
-				cout << "Enter event" << endl;
-				//cin >> event_name;
-				event_name = Tools::input_str();
 				cout << "Enter name" << endl;
-				//cin >> name;
 				name = Tools::input_str();
 				cout << "Enter number" << endl;
-				//cin >> number;
 				number = Tools::enter_number();
 				add_event(day, time, event_name, name, number);
 				break;
@@ -95,20 +98,27 @@ void MainScreen::user_screen()
 				cout << "Enter which task you want to change(event name): ";
 				// cin >> event_name;
 				event_name = Tools::input_str();
+				event = event_collection->get_by_event_name(event_name);
+				if (!event)
+				{
+					cout << "There are no events with name like this." << endl;
+					break;
+				}
+				event->print();
 				cout << "Enter field which you want to change: " << endl;
 				cout << "1.Day" << endl << "2.Time" << endl << "3.Event" << endl
-					<< "4.Name" << endl << "5.Number" << endl;
-				// cin >> buffer;
-				buffer = Tools::input_int();
-				change_event(event_name, buffer);
-				// to make this possible you need to add id in each task
+					<< "4.Name" << endl << "5.Number" << endl << "0.Back" << endl;
+				change_event(event);
 				break;
 			case 4:
 				system("cls");
 				cout << "Enter event name which you want to delete: ";
 				// cin >> event_name;
 				event_name = Tools::input_str();
+				event = event_collection->get_by_event_name(event_name);
 				delete_event(event_name);
+				if (event) cout << "Event was deleted." << endl;
+				else cout << "Event wasn't deleted. Check event name" << endl;
 				// to make this possible you need to add id in each task
 				break;
 			case 5:
@@ -174,6 +184,11 @@ void MainScreen::admin_screen()
 			cout << "Enter username: ";
 			// cin >> username;
 			username = Tools::input_str();
+			if (username.find(" "))
+			{
+				cout << "Invalid name. You can't use spaces." << endl;
+				break;
+			}
 			cout << "Enter password: ";
 			// cin >> password;
 			password = Tools::input_str();
@@ -202,6 +217,11 @@ void MainScreen::admin_screen()
 			cout << "Enter username: ";
 			// cin >> username;
 			username = Tools::input_str();
+			if (username.find(" "))
+			{
+				cout << "Invalid name. You can't use spaces." << endl;
+				break;
+			}
 			cout << "Enter password: ";
 			//cin >> password;
 			password = Tools::input_str();
@@ -214,7 +234,7 @@ void MainScreen::admin_screen()
 			break;
 		case 7:
 			cout << "Delete Admin: " << endl;
-			cout << "Eneter username: ";
+			cout << "Enter username: ";
 			// add current_user == username validation
 			
 			//cin >> username;

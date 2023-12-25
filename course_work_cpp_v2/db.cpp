@@ -32,7 +32,7 @@ string BaseDataBase::read_file()
 	return file_contents;
 }
 
-string* BaseDataBase::tokenize_string(string line, char token)
+string* BaseDataBase::tokenize_string(string line, char ch)
 {
 	// read about stringstream
 	int size = 5;
@@ -46,7 +46,7 @@ string* BaseDataBase::tokenize_string(string line, char token)
 
 	for (size_t i = 0; i < size; i++)
 	{
-		getline(ss, item, token);
+		getline(ss, item, ch);
 		tokens[i] = item;
 	}
 	return tokens;
@@ -187,7 +187,6 @@ User* UserDataBase::get_users()
 		users[i].set_username(tokens[username_index]);
 		users[i].set_password(tokens[password_index]);
 		users[i].set_access_level(stoi(tokens[access_level_index]));
-		cout << "username: " << users[i].get_username() << endl;
 		i++;
 	}
 	file.close();

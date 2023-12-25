@@ -17,7 +17,6 @@ User* Auth::run_auth_menu()
 		switch (enter)
 		{
 		case(1):
-			cout << SIGN_IN << endl;
 			cout << "Sign In: " << endl;
 			cout << "Enter username" << endl;
 			username = Tools::input_str();
@@ -25,9 +24,11 @@ User* Auth::run_auth_menu()
 			password = Tools::input_str();
 
 			user = auth(username, password);
+			system("pause");
+			system("cls");
 			break;
 		case(2):
-			cout << SIGN_UP << endl;
+			cout << "Sign Up" << endl;
 			cout << "Create a new user:" << endl;
 			cout << "Enter username" << endl;
 			username = Tools::input_str();
@@ -40,6 +41,8 @@ User* Auth::run_auth_menu()
 			password = enter_password();
 			
 			user = register_user(username, password);
+			system("pause");
+			system("cls");
 			break;
 			// add this new user in tree and in file!!!!
 		case(0):
@@ -59,12 +62,12 @@ void MainScreen::user_screen()
 	int choice;
 	do
 	{
-		cout << "1.Print My Tasks" << endl;
-		cout << "2.Add Task" << endl;
-		cout << "3.Change Task" << endl;
-		cout << "4.Delete Task" << endl;
+		cout << "1.Print My Events" << endl;
+		cout << "2.Add Event" << endl;
+		cout << "3.Change Event" << endl;
+		cout << "4.Delete Event" << endl;
 		cout << "5.Print Events for Day" << endl;
-		cout << "6.Find by Event" << endl;
+		cout << "6.Find by Event Name" << endl;
 		cout << "7.Log out" << endl;
 		cout << "0.Exit" << endl;
 
@@ -88,8 +91,8 @@ void MainScreen::user_screen()
 
 		case 2:
 			system("cls");
-			cout << "Add Task" << endl;
-			cout << "Enter event" << endl;
+			cout << "Add Event" << endl;
+			cout << "Enter event name" << endl;
 			event_name = Tools::input_str();
 			event = event_collection->get_by_event_name(event_name);
 			if (event)
@@ -101,15 +104,16 @@ void MainScreen::user_screen()
 			day = Tools::enter_day();
 			cout << "Enter time" << endl;
 			time = Tools::enter_time();
-			cout << "Enter name" << endl;
+			cout << "Enter name or names" << endl;
 			name = Tools::input_str();
+			// ADD NAME VALIDATIONS
 			cout << "Enter number" << endl;
 			number = Tools::enter_number();
 			add_event(day, time, event_name, name, number);
 			break;
 		case 3:
 			system("cls");
-			cout << "Enter which task you want to change(event name): ";
+			cout << "Enter which event you want to change(event name): ";
 			// cin >> event_name;
 			event_name = Tools::input_str();
 			event = event_collection->get_by_event_name(event_name);
@@ -120,7 +124,7 @@ void MainScreen::user_screen()
 			}
 			event->print();
 			cout << "Enter field which you want to change: " << endl;
-			cout << "1.Day" << endl << "2.Time" << endl << "3.Event" << endl
+			cout << "1.Day" << endl << "2.Time" << endl << "3.Event Name" << endl
 				<< "4.Name" << endl << "5.Number" << endl << "0.Back" << endl;
 			change_event(event);
 			cout << "Changed event: " << endl;
@@ -146,7 +150,7 @@ void MainScreen::user_screen()
 			break;
 		case 6:
 			system("cls");
-			cout << "Enter event for search: ";
+			cout << "Enter event name for search: ";
 			// cin >> event_name;
 			event_name = Tools::input_str();
 			print_events_by_event_name(event_name);

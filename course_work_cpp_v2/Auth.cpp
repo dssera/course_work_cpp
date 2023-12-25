@@ -64,7 +64,7 @@ User* Auth::register_user(string username, string password)
 	password = sha256(password);
 	if (db->add_user(username, password))
 	{
-		cout << "User was added!!" << endl;
+		cout << "You have successfully registered!" << endl;
 		new_user = new User(username, password);
 	}
 	return new_user;

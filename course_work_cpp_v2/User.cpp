@@ -16,4 +16,11 @@ User::User(string username, string password, int _is_admin)
 	this->_is_admin = _is_admin;
 }
 
-
+int BaseUser::is_admin()
+{
+	return this->_is_admin;
+}
+void BaseUser::set_access_level(int access_level)
+{
+	this->_is_admin = access_level;
+}

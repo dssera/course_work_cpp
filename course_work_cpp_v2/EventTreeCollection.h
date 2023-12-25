@@ -34,6 +34,8 @@ private:
 	void delete_tree(Node* curr);
 	void delete_by_id_(Node* parent, Node* curr, string event_name);
 
+	void save_in_file_(Node* curr, ofstream& file);
+
 	void fill_tree();
 	// void save_in_file();
 
@@ -62,6 +64,5 @@ public:
 	void remove(string day);
 	void delete_by_event_name(string event_name);
 	void save_in_file();
-	void save_in_file_(Node* curr, ofstream& file);
 };
 

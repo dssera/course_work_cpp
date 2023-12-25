@@ -1,1 +1,2 @@
+wednesday;16:00;abs new event;name;+2345345656;
 monday;12:12;qwe;ere;+4565676575;

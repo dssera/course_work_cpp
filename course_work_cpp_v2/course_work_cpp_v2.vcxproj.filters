@@ -74,13 +74,13 @@
     <ClInclude Include="MainScreen.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\cpp_libraries\hash-library\sha256.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="UserTreeCollection.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Tools.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\cpp_libraries\hash-library\sha256.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

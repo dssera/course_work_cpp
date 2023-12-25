@@ -30,14 +30,8 @@ public:
 	{
 		this->password = password;
 	}
-	int is_admin()
-	{
-		return this->_is_admin;
-	}
-	void set_access_level(int access_level)
-	{
-		this->_is_admin = access_level;
-	}
+	int is_admin();
+	void set_access_level(int access_level);
 };
 
 class User : public BaseUser

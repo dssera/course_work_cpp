@@ -31,7 +31,7 @@ User* Auth::run_auth_menu()
 			cout << "Create a new user:" << endl;
 			cout << "Enter username" << endl;
 			username = Tools::input_str();
-			if (username.find(" "))
+			if (username.find(" ") != string::npos)
 			{
 				cout << "Invalid name. You can't use spaces." << endl;
 				break;
@@ -40,6 +40,7 @@ User* Auth::run_auth_menu()
 			password = enter_password();
 			
 			user = register_user(username, password);
+			break;
 			// add this new user in tree and in file!!!!
 		case(0):
 			system("pause");
@@ -197,7 +198,7 @@ void MainScreen::admin_screen()
 			cout << "Enter username: ";
 			// cin >> username;
 			username = Tools::input_str();
-			if (username.find(" "))
+			if (username.find(" ") !=string::npos)
 			{
 				cout << "Invalid name. You can't use spaces." << endl;
 				break;
@@ -230,7 +231,7 @@ void MainScreen::admin_screen()
 			cout << "Enter username: ";
 			// cin >> username;
 			username = Tools::input_str();
-			if (username.find(" "))
+			if (username.find(" ") != string::npos)
 			{
 				cout << "Invalid name. You can't use spaces." << endl;
 				break;
@@ -257,7 +258,6 @@ void MainScreen::admin_screen()
 			break;
 		case 8:
 			delete this->user;
-			delete this->event_collection;
 			delete this->user_collection;
 			system("cls");
 			return;

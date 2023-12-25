@@ -197,12 +197,12 @@ void EventTreeCollection::remove(string day)
 	curr->data = replace_value;
 }
 // delete and create method with tree traversal and if statement
-void EventTreeCollection::delete_by_id_(Node* parent, Node* curr, string event_name)
+void EventTreeCollection::delete_by_event_name_(Node* parent, Node* curr, string event_name)
 {
 	if (curr)
 	{
-		delete_by_id_(curr, curr->left, event_name);
-		delete_by_id_(curr, curr->right, event_name);
+		delete_by_event_name_(curr, curr->left, event_name);
+		delete_by_event_name_(curr, curr->right, event_name);
 
 		if (curr->data->get_event_name() == event_name)
 		{
@@ -210,6 +210,7 @@ void EventTreeCollection::delete_by_id_(Node* parent, Node* curr, string event_n
 			{
 				if (curr->left == nullptr && curr->right == nullptr)
 				{
+					curr->data->print();
 					delete curr->data;
 					delete curr;
 					root = nullptr;
@@ -240,7 +241,7 @@ void EventTreeCollection::delete_by_id_(Node* parent, Node* curr, string event_n
 						replace = replace->left;
 
 					Event* replace_value = replace->data;
-					delete_by_id_(curr, curr->right, replace_value->get_event_name());
+					delete_by_event_name_(curr, curr->right, replace_value->get_event_name());
 					curr->data = replace_value;
 
 					--size;
@@ -292,7 +293,7 @@ void EventTreeCollection::delete_by_id_(Node* parent, Node* curr, string event_n
 					while (replace->left)
 						replace = replace->left;
 					Event* replace_value = replace->data;
-					delete_by_id_(curr, curr->right, replace_value->get_event_name());
+					//delete_by_event_name_(curr, curr->right, replace_value->get_event_name());
 					curr->data = replace_value;
 
 					--size;
@@ -305,7 +306,7 @@ void EventTreeCollection::delete_by_id_(Node* parent, Node* curr, string event_n
 
 void EventTreeCollection::delete_by_event_name(string event_name)
 {
-	delete_by_id_(nullptr, root, event_name);
+	delete_by_event_name_(nullptr, root, event_name);
 }
 
 Event* EventTreeCollection::get_by_event_name(string event_name)

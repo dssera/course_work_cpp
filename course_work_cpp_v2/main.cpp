@@ -93,7 +93,6 @@ int main()
 {
 	MainScreen* main_screen = new MainScreen();
 	main_screen->run();
-	// авторизуешься за админа, выходишь из акка и тогда при регистрации нового пользователя ловишь баг
     return 0;
 }
 

@@ -17,11 +17,10 @@ private:
 	void add_user(string username, string password);
 	void print_users();
 	void delete_user(string username);
-	void change_access_level(int access_level, string username);
+	void change_access_level(string username);
 
 	void add_admin(string username, string password);
 	void print_admins();
-	void delete_admin(string username);
 
 	void add_event(string day, string time,
 		string event, string name, string number);

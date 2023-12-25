@@ -32,7 +32,7 @@ private:
 	Event* get_by_event_name_(Node* curr, string event_name);
 
 	void delete_tree(Node* curr);
-	void delete_by_id_(Node* parent, Node* curr, string event_name);
+	void delete_by_event_name_(Node* parent, Node* curr, string event_name);
 
 	void save_in_file_(Node* curr, ofstream& file);
 

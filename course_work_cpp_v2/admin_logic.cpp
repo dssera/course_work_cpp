@@ -15,9 +15,16 @@ void MainScreen::print_users()
 }
 
 // update
-void MainScreen::change_access_level(int access_level, string username)
+void MainScreen::change_access_level(string username)
 {
 	User* user = this->user_collection->find(username);
+	if (!user)
+	{
+		cout << "User with this username doesn't exist" << endl;
+		return;
+	}
+	cout << "Set new level access(admin: 1, user: 0):" << endl;
+	int access_level = Tools::input_int();
 	if (access_level == 1)
 	{
 		if (user->is_admin() == 1) cout << "This user is already an admin" << endl;
@@ -27,6 +34,11 @@ void MainScreen::change_access_level(int access_level, string username)
 	{
 		if (user->is_admin() == 0) cout << "This user is already not an admin" << endl;
 		else user->set_access_level(0);
+	}
+	else
+	{
+		cout << "Wrong input!!" << endl;
+		return;
 	}
 	save_users();
 }
@@ -47,10 +59,4 @@ void MainScreen::add_admin(string username, string password)
 void MainScreen::print_admins()
 {
 	this->user_collection->print_admins();
-}
-void MainScreen::delete_admin(string username)
-{
-	// add validations
-	this->user_collection->remove(username);
-	save_users();
 }

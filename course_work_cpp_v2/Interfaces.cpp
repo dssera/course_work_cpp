@@ -123,6 +123,8 @@ void MainScreen::user_screen()
 			cout << "1.Day" << endl << "2.Time" << endl << "3.Event" << endl
 				<< "4.Name" << endl << "5.Number" << endl << "0.Back" << endl;
 			change_event(event);
+			cout << "Changed event: " << endl;
+			event->print();
 			break;
 		case 4:
 			system("cls");
@@ -175,8 +177,7 @@ void MainScreen::admin_screen()
 		cout << "4.Delete User" << endl;
 		cout << "5.Add Admin" << endl;
 		cout << "6.Print Admins" << endl;
-		cout << "7.Delete Admin" << endl;
-		cout << "8.Log out" << endl;
+		cout << "7.Log out" << endl;
 		cout << "0.Exit" << endl;
 
 		choice = Tools::input_int();
@@ -213,17 +214,22 @@ void MainScreen::admin_screen()
 			cout << "Enter username to change level access: ";
 			//cin >> username;
 			username = Tools::input_str();
-			cout << "Set new level access(admin: 1, user: 0):" << endl;
-			// cin >> access_level;
-			access_level = Tools::input_int();
-			change_access_level(access_level, username);
+			if (username == this->user->get_username())
+			{
+				cout << "You can't change your access level!!" << endl;
+				break;
+			}
+			change_access_level(username);
 			break;
 		case 4:
 			cout << "Delete User:" << endl;
-			cout << "Eneter username: ";
-			// add current_user == username validation
-			//cin >> username;
+			cout << "Enter username: ";
 			username = Tools::input_str();
+			if (username == this->user->get_username())
+			{
+				cout << "You can't delete yourself!!" << endl;
+				break;
+			}
 			delete_user(username);
 			break;
 		case 5:
@@ -247,16 +253,6 @@ void MainScreen::admin_screen()
 			print_admins();
 			break;
 		case 7:
-			cout << "Delete Admin: " << endl;
-			cout << "Enter username: ";
-			// add current_user == username validation
-
-			//cin >> username;
-			username = Tools::input_str();
-			delete_admin(username);
-
-			break;
-		case 8:
 			delete this->user;
 			delete this->user_collection;
 			system("cls");

@@ -42,7 +42,9 @@ void Event::set_number(string number)
 }
 void Event::print()
 {
-	cout << "event name: " << this->event_name << endl <<
-		"day: " << this->day << endl <<
-		"time: " << this->time << endl;
+	cout << "Event name: " << this->event_name << endl <<
+		"Day: " << this->day << endl <<
+		"Time: " << this->time << endl <<
+		"Names: " << this->name << endl << 
+		"Number: " << this->number << endl;
 }

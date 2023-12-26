@@ -14,7 +14,7 @@ void MainScreen::add_event(string day, string time,
 	Event* event_obj = new Event(day, time, event_name, name, number);
 
 	event_collection->insert(event_obj);
-
+	cout << "Event was successfully added!" << endl;
 	save_events();
 }
 

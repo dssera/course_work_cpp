@@ -31,35 +31,12 @@ start -> auth -|
 
 */
 
-/*
-1. Auth [done]
-2. File System [undone]
-3. Container [undone]
-4. Main Functionality [undone]
-5. other [undone]
-*/
+
 
 /*
-PLaaan::
-	1.Fix user's access problem (1 in the file but it's not an admin)
 
 
-	here you have finished auth and user_db
-	other things:
-	1) Tree: 30 minutes
-	2) TaskDataaBase 2h
-	3) MainScreen 2h
-	// Получается за 4.5 часа можешь закончить
 
-
-*/
-
-#include "Auth.h"
-#include "db.h"
-#include "EventTreeCollection.h"
-#include "MainScreen.h"
-#include "UserTreeCollection.h"
-#include <regex>
 
 //void task_for_lab()
 //{
@@ -88,12 +65,18 @@ PLaaan::
 //	cout << "count: " << count << endl;
 //}
 
+*/
+#include "MainScreen.h"
 
 int main()
 {
 	MainScreen* main_screen = new MainScreen();
 	main_screen->run();
     return 0;
+	// ADD VALIDATION FOR PASSWORD WHEN AMDIN ADD A NEW ONE
+	// CHANGE PRINT OF USERS
+	// ADD A MSG ABOUT USER ADDING
+	// ADD VALIDATIONS FOR NAMES (!@#$%^&*(){}:"<>?)
 }
 
 

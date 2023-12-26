@@ -15,8 +15,8 @@ void EventTreeCollection::print_(Node* curr)
 	if (curr)
 	{
 		print_(curr->left);
-		cout << "day:" << curr->data->get_day() << endl;
-		cout << "event_name: " << curr->data->get_event_name() << endl;
+		curr->data->print();
+		cout << endl;
 		print_(curr->right);
 	}
 }
@@ -27,8 +27,8 @@ void EventTreeCollection::print_by_day_(Node* curr, string day)
 		print_by_day_(curr->left, day);
 		if (curr->data->get_day() == day)
 		{
-			cout << "day:" << curr->data->get_day() << endl;
-			cout << "event_name: " << curr->data->get_event_name() << endl;
+			curr->data->print();
+			cout << endl;
 		}
 		print_by_day_(curr->right, day);
 	}
@@ -73,6 +73,7 @@ void EventTreeCollection::find_by_event_name_(Node* curr, string event_name)
 		if (curr->data->get_event_name().find(event_name) != string::npos)
 		{
 			curr->data->print();
+			cout << endl;
 		}
 	}
 }
@@ -90,10 +91,10 @@ void EventTreeCollection::insert(Event* task)
 
 	Node* currNode = root;
 	while (true) {
-		if (get_index(task->get_day()) <= get_index(currNode->data->get_day())) {
+		if (get_index(task->get_day()) < get_index(currNode->data->get_day())) {
 			if (currNode->left == nullptr) {
 				currNode->left = curr;
-				break;
+				break; 
 			}
 			currNode = currNode->left;
 		}
@@ -196,7 +197,6 @@ void EventTreeCollection::remove(string day)
 	remove(replace_value->get_day());
 	curr->data = replace_value;
 }
-// delete and create method with tree traversal and if statement
 void EventTreeCollection::delete_by_event_name_(Node* parent, Node* curr, string event_name)
 {
 	if (curr)
@@ -210,10 +210,9 @@ void EventTreeCollection::delete_by_event_name_(Node* parent, Node* curr, string
 			{
 				if (curr->left == nullptr && curr->right == nullptr)
 				{
-					curr->data->print();
-					delete curr->data;
-					delete curr;
+					
 					root = nullptr;
+					delete curr;
 
 					--size;
 					return;
@@ -252,13 +251,12 @@ void EventTreeCollection::delete_by_event_name_(Node* parent, Node* curr, string
 			{
 				if (curr->left == nullptr && curr->right == nullptr)
 				{
-					delete curr->data;
-					delete curr;
-
 					if (parent->left == curr)
 						parent->left = nullptr;
 					else if (parent->right == curr)
 						parent->right = nullptr;
+
+					delete curr;
 
 					--size;
 					return;
@@ -293,7 +291,7 @@ void EventTreeCollection::delete_by_event_name_(Node* parent, Node* curr, string
 					while (replace->left)
 						replace = replace->left;
 					Event* replace_value = replace->data;
-					//delete_by_event_name_(curr, curr->right, replace_value->get_event_name());
+					delete_by_event_name_(curr, curr->right, replace_value->get_event_name());
 					curr->data = replace_value;
 
 					--size;

@@ -37,13 +37,15 @@ namespace Tools
 
     static string enter_day()
     {
+
         string input;
         while (true) {
             cin >> input;
             cin.ignore();
-            string days[7] = { "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" };
+            string days[14] = { "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday",
+                                "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
             int isDay = false;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 14; i++)
             {
                 if (input == days[i]) isDay = true;
             }

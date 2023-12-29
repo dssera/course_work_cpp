@@ -3,6 +3,7 @@
 #include "EventTreeCollection.h"
 #include "UserTreeCollection.h"
 #include "Tools.h"
+#include "sha256.h"
 
 class MainScreen
 {
@@ -10,9 +11,6 @@ private:
 	EventTreeCollection* event_collection;
 	UserTreeCollection* user_collection;
 	User* user;
-	// buffer field
-
-	// a lot of methods
 
 	void add_user(string username, string password);
 	void print_users();
@@ -30,8 +28,6 @@ private:
 	void save_users();
 	void save_events();
 
-	// use hash_table or array to do sort in tree not by .length() but by index of day
-	// "monday" : 1, ...
 	void print_events();
 	void print_events_by_day(string day);
 	void print_events_by_event_name(string event);

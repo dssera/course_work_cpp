@@ -34,10 +34,8 @@ namespace Tools
         getline(cin, var);
         return var;
     }
-
     static string enter_day()
     {
-
         string input;
         while (true) {
             cin >> input;
@@ -77,5 +75,57 @@ namespace Tools
             cout << "Invalid input. Enter valid number: ";
         }
         return input;
+    }
+    static string enter_names()
+    {
+        string input;
+        while (true) {
+            cin >> input;
+            cin.ignore();
+            regex rx("^([a-zA-Z]+)(,[a-zA-Z]+)*$");
+            if (regex_match(input, rx)) break;
+            cout << "Invalid input. Enter valid name(s): ";
+        }
+        return input;
+    }
+    static string enter_event_name()
+    {
+        string input;
+        while (true) {
+            cin >> input;
+            cin.ignore();
+            regex rx("^[a-zA-Z]+$");
+            if (regex_match(input, rx)) break;
+            cout << "Invalid input. Enter valid event name: ";
+        }
+        return input;
+    }
+    static string enter_username()
+    {
+        string input;
+        while (true) {
+            cin >> input;
+            cin.ignore();
+            std::regex rx("^[a-zA-Z0-9_-]+$");
+            if (regex_match(input, rx)) break;
+            cout << "Invalid input. Enter valid username: ";
+        }
+        return input;
+    }
+    static string enter_password()
+    {
+        string password;
+        do
+        {
+            password = Tools::input_str();
+            if (password.length() <= 4)
+            {
+                cout << "!!Password can't be less than 5 characters. Enter other one:" << endl;
+                continue;
+            }
+            break;
+
+        } while (true);
+        return password;
     }
 }

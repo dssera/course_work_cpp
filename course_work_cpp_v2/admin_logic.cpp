@@ -3,7 +3,8 @@
 // create
 void MainScreen::add_user(string username, string password)
 {
-	User* user = new User(username, password);
+	SHA256 sha256;
+	User* user = new User(username, sha256(password));
 	this->user_collection->insert(user);
 	save_users();
 }
@@ -11,6 +12,7 @@ void MainScreen::add_user(string username, string password)
 // read
 void MainScreen::print_users()
 {
+	cout << "USER LIST:" << endl << endl;
 	this->user_collection->print();
 }
 
@@ -52,11 +54,13 @@ void MainScreen::delete_user(string username)
 
 void MainScreen::add_admin(string username, string password)
 {
-	User* user = new User(username, password, 1);
+	SHA256 sha256;
+	User* user = new User(username, sha256(password), 1);
 	this->user_collection->insert(user);
 	save_users();
 }
 void MainScreen::print_admins()
 {
+	cout << "ADMIN LIST:" << endl << endl;
 	this->user_collection->print_admins();
 }

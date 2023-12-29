@@ -60,13 +60,13 @@ void MainScreen::change_event(Event* event)
 				break;
 			case 3:
 				cout << "Enter new name: ";
-				new_data = Tools::input_str();
+				new_data = Tools::enter_event_name();
 				event->set_event_name(new_data);
 				flag = false;
 				break;
 			case 4:
 				cout << "Enter new event name: ";
-				new_data = Tools::input_str();
+				new_data = Tools::enter_names();
 				event->set_name(new_data);
 				flag = false;
 				break;

@@ -39,6 +39,7 @@ class User : public BaseUser
 public:
 	User(string username, string password, int _is_admin=0);
 	User() {}
+	void print();
 };
 
 

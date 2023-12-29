@@ -19,7 +19,7 @@ User* Auth::run_auth_menu()
 		case(1):
 			cout << "Sign In: " << endl;
 			cout << "Enter username" << endl;
-			username = Tools::input_str();
+			username = Tools::enter_username();
 			cout << "Enter paswword" << endl;
 			password = Tools::input_str();
 
@@ -31,14 +31,9 @@ User* Auth::run_auth_menu()
 			cout << "Sign Up" << endl;
 			cout << "Create a new user:" << endl;
 			cout << "Enter username" << endl;
-			username = Tools::input_str();
-			if (username.find(" ") != string::npos)
-			{
-				cout << "Invalid name. You can't use spaces." << endl;
-				break;
-			}
+			username = Tools::enter_username();
 			cout << "Enter paswword" << endl;
-			password = enter_password();
+			password = Tools::enter_password();
 			
 			user = register_user(username, password);
 			system("pause");
@@ -93,7 +88,7 @@ void MainScreen::user_screen()
 			system("cls");
 			cout << "Add Event" << endl;
 			cout << "Enter event name" << endl;
-			event_name = Tools::input_str();
+			event_name = Tools::enter_event_name();
 			event = event_collection->get_by_event_name(event_name);
 			if (event)
 			{
@@ -105,7 +100,7 @@ void MainScreen::user_screen()
 			cout << "Enter time" << endl;
 			time = Tools::enter_time();
 			cout << "Enter name or names" << endl;
-			name = Tools::input_str();
+			name = Tools::enter_names();
 			// ADD NAME VALIDATIONS
 			cout << "Enter number" << endl;
 			number = Tools::enter_number();
@@ -115,7 +110,7 @@ void MainScreen::user_screen()
 			system("cls");
 			cout << "Enter which event you want to change(event name): ";
 			// cin >> event_name;
-			event_name = Tools::input_str();
+			event_name = Tools::enter_event_name();
 			event = event_collection->get_by_event_name(event_name);
 			if (!event)
 			{
@@ -199,25 +194,27 @@ void MainScreen::admin_screen()
 			print_users();
 			break;
 		case 2:
+			system("cls");
 			cout << "Add new user: " << endl;
 			cout << "Enter username: ";
 			// cin >> username;
-			username = Tools::input_str();
-			if (username.find(" ") !=string::npos)
-			{
-				cout << "Invalid name. You can't use spaces." << endl;
-				break;
-			}
+			username = Tools::enter_username();
 			cout << "Enter password: ";
 			// cin >> password;
 			password = Tools::input_str();
+			if (this->user_collection->find(username))
+			{
+				cout << "User with this username is already exist" << endl;
+				break;
+			}
 			add_user(username, password);
 			cout << "User was added!!" << endl;
 			break;
 		case 3:
+			system("cls");
 			cout << "Enter username to change level access: ";
 			//cin >> username;
-			username = Tools::input_str();
+			username = Tools::enter_username();
 			if (username == this->user->get_username())
 			{
 				cout << "You can't change your access level!!" << endl;
@@ -226,33 +223,42 @@ void MainScreen::admin_screen()
 			change_access_level(username);
 			break;
 		case 4:
+			system("cls");
 			cout << "Delete User:" << endl;
 			cout << "Enter username: ";
-			username = Tools::input_str();
+			username = Tools::enter_username();
 			if (username == this->user->get_username())
 			{
 				cout << "You can't delete yourself!!" << endl;
 				break;
 			}
+			if (!this->user_collection->find(username))
+			{
+				cout << "User with this username doesn't exist" << endl;
+				break;
+			}
 			delete_user(username);
+			
 			break;
 		case 5:
+			system("cls");
 			cout << "Add new admin: " << endl;
 			cout << "Enter username: ";
 			// cin >> username;
-			username = Tools::input_str();
-			if (username.find(" ") != string::npos)
-			{
-				cout << "Invalid name. You can't use spaces." << endl;
-				break;
-			}
+			username = Tools::enter_username();
 			cout << "Enter password: ";
 			//cin >> password;
 			password = Tools::input_str();
+			if (this->user_collection->find(username))
+			{
+				cout << "User with this username is already exist" << endl;
+				break;
+			}
 			add_admin(username, password);
 			cout << "Admin was added!!" << endl;
 			break;
 		case 6:
+			system("cls");
 			cout << "Print Admins: " << endl;
 			print_admins();
 			break;

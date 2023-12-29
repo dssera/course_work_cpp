@@ -1,9 +1,5 @@
 ﻿#include "db.h"
 
-
-
-
-
 string BaseDataBase::get_filename()
 {
 	return this->filename;

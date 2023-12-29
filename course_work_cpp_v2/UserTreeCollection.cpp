@@ -6,8 +6,8 @@ void UserTreeCollection::print_(Node* curr)
 	{
 		print_(curr->left);
 		print_(curr->right);
-		cout << "username: " << curr->data->get_username() << endl;
-		cout << "is admin: " << curr->data->is_admin() << endl;
+		curr->data->print();
+		cout << endl;
 	}
 }
 void UserTreeCollection::print_admins_(Node* curr)
@@ -18,8 +18,8 @@ void UserTreeCollection::print_admins_(Node* curr)
 		print_admins_(curr->right);
 		if (curr->data->is_admin())
 		{
-			cout << "username: " << curr->data->get_username() << endl;
-			cout << "is admin: " << curr->data->is_admin() << endl;
+			curr->data->print();
+			cout << endl;
 		}
 	}
 }

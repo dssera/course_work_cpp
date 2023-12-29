@@ -46,7 +46,6 @@ public:
 
 class EventDataBase : public BaseDataBase
 {
-	// this class will work with collection
 	const int day_index = 0;
 	const int time_index = 1;
 	const int event_name_index = 2;

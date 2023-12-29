@@ -13,7 +13,6 @@ void MainScreen::run()
 		UserTreeCollection* user_collection = new UserTreeCollection(user_db);
 		EventTreeCollection* event_collection = new EventTreeCollection(user->get_username());
 
-		// is it okey??
 		this->user_collection = user_collection;
 		this->event_collection = event_collection;
 		this->user = user;
@@ -25,7 +24,6 @@ void MainScreen::run()
 }
 
 
-// u did changes in collection and then save it
 void MainScreen::save_users()
 {
 	this->user_collection->save_in_file();
@@ -34,10 +32,3 @@ void MainScreen::save_events()
 {
 	this->event_collection->save_in_file();
 }
-// отмена изменений??
-// use hash_table or array to do sort in tree not by .length() but by index of day
-// "monday" : 1, ...
-
-
-
-
